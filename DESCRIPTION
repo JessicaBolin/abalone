@@ -1,15 +1,11 @@
 Package: abalone
 Title: Climate refugia for red abalone
 Version: 0.0.0.9000
-Authors: 
-  c(person(given = "Jessica",
-           family = "Bolin",
-           role = c("aut", "cre"),
-           email = "jabbolin@ucdavis.edu"),
-    person(given = "Mikaela",
-           family = "Provost",
-           role = "ctb"))
+Authors@R: c(
+    person("Jessica", "Bolin", email = "jabbolin@ucdavis.edu", role = c("aut", "cre")),
+    person("Mikaela", "Provost", role = "fnd", comment = "Principal Investigator"))
 Description: This package provides functions used for defining and vizualising climate refugia for red abalone across California. The project is funded by the California 5th assessment on climate change and the PI is Mikaela Provost. 
+License: MIT 
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
