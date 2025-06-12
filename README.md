@@ -1,4 +1,8 @@
-This package is developed by Jessica Bolin, which documents functions used throughout my postdoc for defining and mapping climate refugia for red abalone across California.
+# `{abalone}`
+
+## Overview
+
+`{abalone}` is a package which documents functions used throughout my postdoc for defining and mapping climate refugia for red abalone across California.
 
 ## Installation
 
@@ -9,6 +13,6 @@ You can install the development version from Github via:
 devtools::install_github("JessicaBolin/abalone")
 ```
 
-## Citation
+## Usage
 
-Bolin J (2025). *abalone: Climate refugia for red abalone*. R package version 0.0.0.9000.
+Check the [Getting Started](articles/abalone.html) article to see examples of how to deploy these functions.
