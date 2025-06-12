@@ -3,6 +3,18 @@
 \name{read_shp}
 \alias{read_shp}
 \title{Read in shapefiles provided by this package}
+\source{
+The shapefiles are stored in \code{/extdata}.
+
+\strong{Available shapefiles:}
+\itemize{
+\item \strong{usa}: \code{usa_contiguous.shp}
+\item \strong{eez}: \code{westcoast_eez.shp}. Derived from 'Marine Regions' dataset: https://www.marineregions.org/
+\item \strong{contshelf50}: \code{cont_shelf_50m.shp}. Derived from GEBCO 2024
+\item \strong{contshelf200}: \code{cont_shelf_200m.shp}. Derived from GEBCO 2024.
+\item \strong{mpas}: \code{california_mpas.shp}. From CDFW dataset: 'California Marine Protected Areas ds582', representing all MPAs as of 1 Jan, 2019.
+}
+}
 \usage{
 read_shp(shape = c("usa", "eez", "contshelf50", "contshelf200", "mpas"))
 }
@@ -21,16 +33,4 @@ An \code{sf} object of the chosen shapefile
 }
 \description{
 This function uses the \code{sf} package to read one of the included shapefiles bundled with the package. Jessie has standardized these.
-}
-\details{
-The shapefiles are stored in \code{/extdata}.
-
-\strong{Available shapefiles:}
-\itemize{
-\item \strong{usa}: \code{usa_contiguous.shp}
-\item \strong{eez}: \code{westcoast_eez.shp}. Derived from 'Marine Regions' dataset: https://www.marineregions.org/
-\item \strong{contshelf50}: \code{cont_shelf_50m.shp}. Derived from GEBCO 2024
-\item \strong{contshelf200}: \code{cont_shelf_200m.shp}. Derived from GEBCO 2024.
-\item \strong{mpas}: \code{california_mpas.shp}. From CDFW dataset: 'California Marine Protected Areas \link{ds582}', representing all MPAs as of 1 Jan, 2019.
-}
 }

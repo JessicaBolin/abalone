@@ -1,6 +1,6 @@
 Package: abalone
 Title: Climate refugia for red abalone
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: c(
     person("Jessica", "Bolin", email = "jabbolin@ucdavis.edu", role = c("aut", "cre")),
     person("Mikaela", "Provost", role = "fnd", comment = "Principal Investigator"))
@@ -17,3 +17,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
+URL: https://jessicabolin.github.io/abalone/
