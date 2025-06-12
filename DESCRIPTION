@@ -1,0 +1,23 @@
+Package: abalone
+Title: Climate refugia for red abalone
+Version: 0.0.0.9000
+Authors: 
+  c(person(given = "Jessica",
+           family = "Bolin",
+           role = c("aut", "cre"),
+           email = "jabbolin@ucdavis.edu"),
+    person(given = "Mikaela",
+           family = "Provost",
+           role = "ctb"))
+Description: This package provides functions used for defining and vizualising climate refugia for red abalone across California. The project is funded by the California 5th assessment on climate change and the PI is Mikaela Provost. 
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    raster,
+    sf,
+    terra
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
