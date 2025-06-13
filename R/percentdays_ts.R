@@ -56,18 +56,18 @@ percentdays_ts <- function(area = c("monterey_bay", "channel_islands", "fort_bra
   for (i in 1:length(yr_range)) {
 
     rasty <- tt_gfdl[[i]]
-    total <- values(rasty, na.rm=T) %>% sum # Sum all the cells in this area
-    total <- total/values(rasty, na.rm = T) %>% length
+    total <- terra::values(rasty, na.rm=T) %>% sum # Sum all the cells in this area
+    total <- total/terra::values(rasty, na.rm = T) %>% length
     df_gfdl <- data.frame(model = "gfdltv", val = total, year = yr_range[i])
 
     rasty <- tt_ipsl[[i]]
-    total <- values(rasty, na.rm=T) %>% sum
-    total <- total/values(rasty, na.rm = T) %>% length
+    total <- terra::values(rasty, na.rm=T) %>% sum
+    total <- total/terra::values(rasty, na.rm = T) %>% length
     df_ipsl <- data.frame(model = "ipsltv", val = total, year = yr_range[i])
 
     rasty <- tt_had[[i]]
-    total <- values(rasty, na.rm=T) %>% sum
-    total <- total/values(rasty, na.rm = T) %>% length
+    total <- terra::values(rasty, na.rm=T) %>% sum
+    total <- total/terra::values(rasty, na.rm = T) %>% length
     df_had <- data.frame(model = "hadtv", val = total, year = yr_range[i])
 
     df <- rbind(df_gfdl, df_ipsl, df_had)
@@ -107,11 +107,11 @@ percentdays_ts <- function(area = c("monterey_bay", "channel_islands", "fort_bra
     ggplot2::theme(
       panel.grid.minor = ggplot2::element_blank(),
       plot.margin = ggplot2::unit(c(1, 0.1, 0.1, 0.1), "cm"),
-      axis.title = ggplot2::element_text(size = 16, family = "Arial Narrow", face = "bold"),
-      axis.text = ggplot2::element_text(size = 14, family = "Arial Narrow"),
-      legend.title = ggplot2::element_text(size = 14, family = "Arial Narrow"),
-      legend.text = ggplot2::element_text(size = 12, family = "Arial Narrow"),
-      title = ggplot2::element_text(size = 14, family = "Arial Narrow")
+      axis.title = ggplot2::element_text(size = 16, face = "bold"),
+      axis.text = ggplot2::element_text(size = 14),
+      legend.title = ggplot2::element_text(size = 14),
+      legend.text = ggplot2::element_text(size = 12),
+      title = ggplot2::element_text(size = 14)
     ) +
     ggplot2::geom_hline(ggplot2::aes(yintercept = lib_thresh), lty = "dashed") +
     ggplot2::geom_hline(ggplot2::aes(yintercept = cons_thresh), lty = "dashed")

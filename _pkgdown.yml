@@ -13,6 +13,11 @@ articles:
   - Rshiny
 
 reference:
+- title: Refugia workflow
+  desc: >
+   Functions used to define and map refugia
+  contents:
+  - percentdays_ts
 - title: Functions
   desc: >
    These are miscellaneous functions.
