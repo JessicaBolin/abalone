@@ -8,6 +8,8 @@
 
 [![MacOS](https://github.com/JessicaBolin/abalone/actions/workflows/MacOS.yaml/badge.svg)](https://github.com/JessicaBolin/abalone/actions/workflows/MacOS.yaml)
 
+[![Windows](https://github.com/JessicaBolin/abalone/actions/workflows/Windows.yaml/badge.svg)](https://github.com/JessicaBolin/abalone/actions/workflows/Windows.yaml)
+
 <!-- badges: end -->
 
 ## Overview
