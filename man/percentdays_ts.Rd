@@ -40,7 +40,7 @@ this function will only work for refugia definitions that are calculated using
 \% of year defined as refugia (i.e., not Definitions 1-2).
 }
 \examples{
-\donttest{
+\dontrun{
 percentdays_ts(area = "monterey_bay", yr_range = 1990:2100, def = "def5",
 input_dir = "/Users/admin/Documents/GitHub/savingabalone/out",
 cons_thresh = 95, lib_thresh = 50)
