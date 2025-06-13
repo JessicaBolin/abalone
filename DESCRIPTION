@@ -18,7 +18,6 @@ Imports:
     dplyr,
     ggplot2,
     magrittr,
-    raster,
     sf,
     terra
 Suggests: 

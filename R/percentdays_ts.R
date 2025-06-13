@@ -12,7 +12,8 @@
 #' @param input_dir Character. Parent directory where input files live. Defaults to `/out`
 #' @param cons_thresh Integer. Value representing the conservative temporal threshold to define refugia. Defaults to 95(%)
 #' @param lib_thresh Integer. Value representing the liberal temporal threshold to define refugia. Defaults to 50(%)
-#'
+#' @param extent_list List of vectors. Defaults to `abalone::extent_list`
+
 #' @return Produces a `ggplot2::ggplot` object of an annual time series of refugia.
 #' @export
 #'
@@ -22,15 +23,22 @@
 #' @importFrom ggplot2 ylim theme element_blank element_text unit geom_hline
 #'
 #' @examples
-#' percentdays_ts(area = "monterey_bay", yr_range = 1990:2100, def = "def5", input_dir = "/Users/admin/Documents/GitHub/savingabalone/out", cons_thresh = 95, lib_thresh = 50)
-#'
+#' \donttest{
+#' percentdays_ts(area = "monterey_bay", yr_range = 1990:2100, def = "def5",
+#' input_dir = "/Users/admin/Documents/GitHub/savingabalone/out",
+#' cons_thresh = 95, lib_thresh = 50)
+#' }
+
 
 percentdays_ts <- function(area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
                            yr_range = 1990:2100,
                            def = c("def3", "def4", "def5", "def6", "def7", "def8"),
                            input_dir = "/Users/admin/Documents/GitHub/savingabalone/out",
                            cons_thresh = 95,
-                           lib_thresh = 50) {
+                           lib_thresh = 50,
+                           extent_list = abalone::extent_list) {
+
+  #utils::globalVariables(c("year", "model", "val"))
 
   # Validate area
   if (!area %in% names(extent_list)) {

@@ -10,7 +10,8 @@ percentdays_ts(
   def = c("def3", "def4", "def5", "def6", "def7", "def8"),
   input_dir = "/Users/admin/Documents/GitHub/savingabalone/out",
   cons_thresh = 95,
-  lib_thresh = 50
+  lib_thresh = 50,
+  extent_list = abalone::extent_list
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ percentdays_ts(
 \item{cons_thresh}{Integer. Value representing the conservative temporal threshold to define refugia. Defaults to 95(\%)}
 
 \item{lib_thresh}{Integer. Value representing the liberal temporal threshold to define refugia. Defaults to 50(\%)}
+
+\item{extent_list}{List of vectors. Defaults to \code{abalone::extent_list}}
 }
 \value{
 Produces a \code{ggplot2::ggplot} object of an annual time series of refugia.
@@ -37,6 +40,9 @@ this function will only work for refugia definitions that are calculated using
 \% of year defined as refugia (i.e., not Definitions 1-2).
 }
 \examples{
-percentdays_ts(area = "monterey_bay", yr_range = 1990:2100, def = "def5", input_dir = "/Users/admin/Documents/GitHub/savingabalone/out", cons_thresh = 95, lib_thresh = 50)
-
+\donttest{
+percentdays_ts(area = "monterey_bay", yr_range = 1990:2100, def = "def5",
+input_dir = "/Users/admin/Documents/GitHub/savingabalone/out",
+cons_thresh = 95, lib_thresh = 50)
+}
 }
