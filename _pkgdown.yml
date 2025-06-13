@@ -5,12 +5,24 @@ template:
   assets:
     css: "pkgdown/extra.css"
 
+
+articles:
+- title: RShiny
+  navbar: ~
+  contents:
+  - Rshiny
+
 reference:
 - title: Functions
   desc: >
    These are miscellaneous functions.
   contents:
   - read_shp
+- title: Datasets
+  desc: >
+   These are internal datasets specific to our project
+  contents:
+  - extent_list
 
 authors:
   Jessica A. Bolin:

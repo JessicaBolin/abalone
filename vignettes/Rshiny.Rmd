@@ -1,0 +1,22 @@
+---
+title: "Ancillary Project Info"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Rshiny}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# RShiny
+
+We are building an `RShiny` dashboard designed to make our refugia projections publicly accessible. Access the most recent iteration of the app here: <https://jessica-bolin.shinyapps.io/shiny_q4_v2/>
+
+# Supplemental Quarterly Reports
+
+Here are a list of supplemental Quarto reports generated for our quarterly updates with our project managers.
+
+> Note: Currently, these are only accessible to our project managers and author team.
+
+-   [Q3 (July to September 2024)](https://jessicabolin.quarto.pub/identifying-climate-change-refugia-in-coastal-and-pelagic-ocean-habitats/)
+-   [Q4 Part I (October to December 2024)](https://jessicabolin.quarto.pub/q4_supplement_parti/)
+-   [Q4 Part II (October to December 2024)](https://jessicabolin.quarto.pub/q4_supplement_partii/)

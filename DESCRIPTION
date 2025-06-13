@@ -24,3 +24,6 @@ Suggests:
 VignetteBuilder: knitr
 URL: https://jessicabolin.github.io/abalone/
 BugReports: https://github.com/JessicaBolin/abalone/issues
+Depends: 
+    R (>= 3.5)
+LazyData: true
