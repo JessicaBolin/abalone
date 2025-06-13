@@ -2,15 +2,17 @@ url: https://jessicabolin.github.io/abalone/
 
 template:
   bootstrap: 5
-  light-switch: true
+  assets:
+    css: "pkgdown/extra.css"
 
 reference:
 - title: Functions
   desc: >
-   The foundations for bla bla
+   These are miscellaneous functions.
   contents:
   - read_shp
 
 authors:
-  Jessica Bolin:
+  Jessica A. Bolin:
     href: https://jessicabolin.github.io
+
