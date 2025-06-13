@@ -1,6 +1,8 @@
 url: https://jessicabolin.github.io/abalone/
+
 template:
   bootstrap: 5
+  light-switch: true
 
 reference:
 - title: Functions
@@ -8,3 +10,7 @@ reference:
    The foundations for bla bla
   contents:
   - read_shp
+
+authors:
+  Jessica Bolin:
+    href: https://jessicabolin.github.io
