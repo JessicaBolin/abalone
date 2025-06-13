@@ -18,33 +18,4 @@ knitr::opts_chunk$set(
 library(abalone)
 ```
 
-# Read in shapfile
-
-This function contains a bunch of shapefiles that I use a lot:
-
--   USA contiguous land mass
-
--   USA West coast EEZ
-
--   50m bathymetry contour
-
--   200m bathymetry contour
-
--   Californian MPAs
-
-## Read in shapefile hash 2
-
-This reads it as a `sf` object.
-
-```{r}
-us <- read_shp(shape = "usa")
-us
-```
-
-# Plot
-
-Let's see what it looks like
-
-```{r}
-plot(us)
-```
+Here I will document examples of how to run refugia functions. More to come. 

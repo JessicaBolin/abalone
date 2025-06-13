@@ -34,3 +34,8 @@ An \code{sf} object of the chosen shapefile
 \description{
 This function uses the \code{sf} package to read one of the included shapefiles bundled with the package. Jessie has standardized these.
 }
+\examples{
+shp <- read_shp("usa")
+shp
+plot(shp)
+}

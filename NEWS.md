@@ -10,6 +10,7 @@ This is the first release of `{abalone}`!
 
 -   Learning how to make a package and deploy vignette to GitHub Pages.
 -   Added `NEWS.md` to `root` to track changes to the package.
+-   Added contributors, MIT license, and badges for Dev status
 -   Functions:
     -   `read_shp()`
 -   Vignette:

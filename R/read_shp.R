@@ -26,6 +26,10 @@
 
 #' }
 #' @export
+#' @examples
+#' shp <- read_shp("usa")
+#' shp
+#' plot(shp)
 
 read_shp <- function(shape = c("usa", "eez", "contshelf50", "contshelf200", "mpas")) {
 
