@@ -28,6 +28,8 @@ reference:
    These are internal datasets specific to our project
   contents:
   - extent_list
+  - percentdays
+  - cali_rast
 
 authors:
   Jessica A. Bolin:
