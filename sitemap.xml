@@ -1,11 +1,13 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://jessicabolin.github.io/abalone/404.html</loc></url>
 <url><loc>https://jessicabolin.github.io/abalone/LICENSE.html</loc></url>
+<url><loc>https://jessicabolin.github.io/abalone/articles/Rshiny.html</loc></url>
 <url><loc>https://jessicabolin.github.io/abalone/articles/abalone.html</loc></url>
 <url><loc>https://jessicabolin.github.io/abalone/articles/index.html</loc></url>
 <url><loc>https://jessicabolin.github.io/abalone/authors.html</loc></url>
 <url><loc>https://jessicabolin.github.io/abalone/index.html</loc></url>
 <url><loc>https://jessicabolin.github.io/abalone/news/index.html</loc></url>
+<url><loc>https://jessicabolin.github.io/abalone/reference/extent_list.html</loc></url>
 <url><loc>https://jessicabolin.github.io/abalone/reference/index.html</loc></url>
 <url><loc>https://jessicabolin.github.io/abalone/reference/read_shp.html</loc></url>
 </urlset>
