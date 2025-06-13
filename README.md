@@ -1,6 +1,6 @@
 # `{abalone}`
 
-# abalone <a href="https://jessicabolin.github.io/abalone/"><img src="man/figures/logo.png" alt="abalone website" align="right" height="68"/></a>
+# <a href="https://jessicabolin.github.io/abalone/"><img src="man/figures/logo.png" alt="abalone website" align="right" height="68"/></a>
 
 <!-- badges: start -->
 
