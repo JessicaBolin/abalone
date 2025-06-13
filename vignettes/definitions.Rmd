@@ -1,0 +1,23 @@
+---
+title: "Refugia definitions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Refugia definitions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Table of definitions
+
+Below lists the definitions we are using to define refugia for red abalone.
+
+| \#  | Description                                                                                                                                                                         | Variable            | Refs                                                                                     |
+|----------------|--------------------------|----------------|----------------|
+| 1   | When abalone experience lower short-term variability in temperature over 5-10 day moving window periods at a specific site                                                          | Temperature         | Dowd & Denny 2020                                                                        |
+| 2   | When abalone experience lower degree heating days above a temperature threshold at a specific site                                                                                  | Temperature         | Boch et al 2018; Gleeson & Strong 1995                                                   |
+| 3   | Thermal performance curve                                                                                                                                                           | Temperature         | Provost et al. in prep                                                                   |
+| 4   | When abalone in: (i) normoxic conditions (i.e., 21 kPa) experience temperatures between 16-20˚C, OR (ii) hypoxic conditions (i.e., 10.5 kPa) experience temperatures between 7-11˚C | Temperature, oxygen | Duncan et al 2023                                                                        |
+| 5   | When abalone experience temperatures that are (i) between 15.5-20.5˚C, regardless of pH, or (ii) \<15.5˚C and pH \>7.5                                                              | Temperature, pH     | Boch et al 2017; Fagundes et al 2020                                                     |
+| 6   | When abalone experience temperatures below 18˚C                                                                                                                                     | Temperature         | Rogers-Bennett et al 2010; Braid et al 2005; Vilchis et al 2005; Crosson & Friedman 2018 |
+| 7   | When dissolved oxygen \>2mg/L                                                                                                                                                       | Oxygen              | Low et al 2021                                                                           |
+| 8   | When temperatures are between 16-18˚C                                                                                                                                               | Temperature         | Duncan et al 2023; Leighton 1974; Diaz et al 2000; Salinas et al 2011                    |

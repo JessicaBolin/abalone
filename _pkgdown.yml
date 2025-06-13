@@ -11,12 +11,14 @@ articles:
   navbar: ~
   contents:
   - Rshiny
+  - definitions
 
 reference:
 - title: Refugia workflow
   desc: >
    Functions used to define and map refugia
   contents:
+  - build_refugia_rasters
   - percentdays_ts
 - title: Functions
   desc: >
