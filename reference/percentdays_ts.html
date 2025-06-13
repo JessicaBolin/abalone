@@ -61,7 +61,8 @@ this function will only work for refugia definitions that are calculated using
 <span>  def <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"def3"</span>, <span class="st">"def4"</span>, <span class="st">"def5"</span>, <span class="st">"def6"</span>, <span class="st">"def7"</span>, <span class="st">"def8"</span><span class="op">)</span>,</span>
 <span>  input_dir <span class="op">=</span> <span class="st">"/Users/admin/Documents/GitHub/savingabalone/out"</span>,</span>
 <span>  cons_thresh <span class="op">=</span> <span class="fl">95</span>,</span>
-<span>  lib_thresh <span class="op">=</span> <span class="fl">50</span></span>
+<span>  lib_thresh <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="extent_list.html">extent_list</a></span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -92,6 +93,10 @@ this function will only work for refugia definitions that are calculated using
 <dt id="arg-lib-thresh">lib_thresh<a class="anchor" aria-label="anchor" href="#arg-lib-thresh"></a></dt>
 <dd><p>Integer. Value representing the liberal temporal threshold to define refugia. Defaults to 50(%)</p></dd>
 
+
+<dt id="arg-extent-list">extent_list<a class="anchor" aria-label="anchor" href="#arg-extent-list"></a></dt>
+<dd><p>List of vectors. Defaults to <code><a href="extent_list.html">abalone::extent_list</a></code></p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -100,10 +105,13 @@ this function will only work for refugia definitions that are calculated using
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">percentdays_ts</span><span class="op">(</span>area <span class="op">=</span> <span class="st">"monterey_bay"</span>, yr_range <span class="op">=</span> <span class="fl">1990</span><span class="op">:</span><span class="fl">2100</span>, def <span class="op">=</span> <span class="st">"def5"</span>, input_dir <span class="op">=</span> <span class="st">"/Users/admin/Documents/GitHub/savingabalone/out"</span>, cons_thresh <span class="op">=</span> <span class="fl">95</span>, lib_thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu">percentdays_ts</span><span class="op">(</span>area <span class="op">=</span> <span class="st">"monterey_bay"</span>, yr_range <span class="op">=</span> <span class="fl">1990</span><span class="op">:</span><span class="fl">2100</span>, def <span class="op">=</span> <span class="st">"def5"</span>,</span></span>
+<span class="r-in"><span>input_dir <span class="op">=</span> <span class="st">"/Users/admin/Documents/GitHub/savingabalone/out"</span>,</span></span>
+<span class="r-in"><span>cons_thresh <span class="op">=</span> <span class="fl">95</span>, lib_thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>/Users/admin/Documents/GitHub/savingabalone/out/def5/_2_percent_days_rasts/gfdltv_percentdays.nc: No such file or directory (GDAL error 4)</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'x' in selecting a method for function 'crop': [rast] file does not exist: /Users/admin/Documents/GitHub/savingabalone/out/def5/_2_percent_days_rasts/gfdltv_percentdays.nc</span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
