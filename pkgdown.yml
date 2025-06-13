@@ -3,8 +3,9 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   abalone: abalone.html
+  definitions: definitions.html
   Rshiny: Rshiny.html
-last_built: 2025-06-13T22:06Z
+last_built: 2025-06-13T23:15Z
 urls:
   reference: https://jessicabolin.github.io/abalone/reference
   article: https://jessicabolin.github.io/abalone/articles
