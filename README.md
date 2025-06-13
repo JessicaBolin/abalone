@@ -25,6 +25,12 @@ devtools::install_github("JessicaBolin/abalone")
 
 Check the [Getting Started](articles/abalone.html) article to see examples of how to deploy these functions.
 
+## Citation
+
+Here is the full bibliographic reference:
+
+> Bolin, J. (2025). abalone: Climate refugia for red abalone. R package version 0.0.1, <https://doi.org/10.5281/zenodo.15653690>.
+
 ## Getting help
 
 There are two main places to get help with `{abalone}`:

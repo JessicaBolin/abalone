@@ -1,0 +1,9 @@
+bibentry(
+  key  = "abalone",
+  bibtype = "Misc",
+  title    = "abalone: Climate refugia for red abalone",
+  author   = "Jessica Bolin",
+  note = "R package version 0.0.1",
+  year   = "2025",
+  doi  = "10.5281/zenodo.15653690"
+)
