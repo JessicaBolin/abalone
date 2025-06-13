@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   abalone: abalone.html
   Rshiny: Rshiny.html
-last_built: 2025-06-13T17:31Z
+last_built: 2025-06-13T18:29Z
 urls:
   reference: https://jessicabolin.github.io/abalone/reference
   article: https://jessicabolin.github.io/abalone/articles
