@@ -10,11 +10,11 @@
 
 ## Overview
 
-`{abalone}` is a package which documents functions used throughout my postdoc for defining and mapping climate refugia for red abalone across California. This project is funded through California's 5th Assessment on Climate Change.
+`{abalone}` is a package which documents functions used throughout my postdoc for defining and mapping climate refugia for red abalone across California. This project is funded through California's 5th Assessment on Climate Change, and supported by the University of California, Davis.
 
 ## Installation
 
-You can install the development version from Github via:
+You can install the development version from GitHub via:
 
 ```         
 # install.packages("devtools)
@@ -37,4 +37,4 @@ There are two main places to get help with `{abalone}`:
 
 1.  Email the package maintainer directly at jabbolin(at)ucdavis(dot)edu.
 
-2.  Submit an Issue via the [Github repository](https://github.com/JessicaBolin/abalone).
+2.  Submit an Issue via the [GitHub repository](https://github.com/JessicaBolin/abalone).

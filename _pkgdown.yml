@@ -16,7 +16,7 @@ articles:
 reference:
 - title: Refugia workflow
   desc: >
-   Functions used to define and map refugia
+   Functions used to define and map refugia. Ideally, these should be run in descending order.
   contents:
   - build_refugia_rasters
   - percentdays_ts
@@ -27,7 +27,7 @@ reference:
   - read_shp
 - title: Datasets
   desc: >
-   These are internal datasets specific to our project
+   These are internal datasets specific to our project, and are required for running package examples.
   contents:
   - extent_list
   - percentdays
