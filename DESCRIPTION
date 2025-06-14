@@ -19,7 +19,9 @@ Imports:
     ggplot2,
     magrittr,
     sf,
-    terra
+    terra,
+    tmap,
+    viridis
 Suggests: 
     knitr,
     rmarkdown
