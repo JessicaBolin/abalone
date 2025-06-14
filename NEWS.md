@@ -4,6 +4,22 @@ editor_options:
     wrap: 72
 ---
 
+# abalone 0.0.2
+
+-   Adding new functions
+    -   `build_stress_rasters`
+    -   `viz_stress_map`
+    -   `viz_percentdays_ts`
+-   Adding internal package datasets
+    -   `data_extent_list`
+    -   `percentdays`
+    -   `cali_rast`
+-   Added articles
+    -   Ancillary Project Info
+    -   Refugia Definitions
+-   Hex logo addition!  
+-   Updated citation with Zenodo draft DOI
+
 # abalone 0.0.1
 
 This is the first release of `{abalone}`!

@@ -29,7 +29,7 @@ Check the [Getting Started](articles/abalone.html) article to see examples of ho
 
 Here is the full bibliographic reference:
 
-> Bolin, J. (2025). abalone: Climate refugia for red abalone. R package version 0.0.1, <https://doi.org/10.5281/zenodo.15653690>.
+> Bolin, J. (2025). abalone: Climate refugia for red abalone. R package version 0.0.2, <https://doi.org/10.5281/zenodo.15653690>.
 
 ## Getting help
 
