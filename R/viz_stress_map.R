@@ -1,6 +1,6 @@
 #' Map of % of year stressed
 #'
-#' This produces a nice `tmap` object that shows the % of year stressful conditions were experienced by abalone.
+#' This produces a nice `tmap` object that shows the % of year stressful conditions were experienced by abalone. Note that this code uses `tmap` Version 3 code syntax.
 #'
 #' @param yr Numeric vector. Year to plot. Default is 2100.
 #' @param model ESM model. Choose one from `c("gfdltv", "hadtv", "ipsltv", "ens")`
@@ -15,8 +15,10 @@
 #' @importFrom magrittr %>%
 #'
 #' @examples
+#' if (interactive()) {
 #' viz_stress_map(yr = 2098, model = "gfdltv", area = "monterey_bay",
 #' def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)
+#'
 
 viz_stress_map <- function(yr = 2100,
                       model = c("gfdltv", "hadtv", "ipsltv", "ens"),
