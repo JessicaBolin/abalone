@@ -18,9 +18,9 @@ reference:
   desc: >
    Functions used to define and map refugia. Ideally, these should be run in descending order.
   contents:
-  - build_refugia_rasters
-  - percentdays_ts
-- title: Functions
+  - build_stress_rasters
+  - viz_percentdays_ts
+- title: Misc. functions
   desc: >
    These are miscellaneous functions.
   contents:

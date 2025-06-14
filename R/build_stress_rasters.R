@@ -15,13 +15,13 @@
 #' @importFrom dplyr filter
 #'
 #' @examples
-#' ens_stress <- build_refugia_rasters(percentdays = percentdays, esm = "ens", yrst = 1990, yrend = 2100)
+#' ens_stress <- build_stress_rasters(percentdays = percentdays, esm = "ens", yrst = 1990, yrend = 2100)
 #' ens_stress
 #' terra::plot(ens_stress[[98]], main = "% stress in 2088")
 #'
 
 
-build_refugia_rasters <- function(percentdays,
+build_stress_rasters <- function(percentdays,
                                   esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
                                   yrst = 1990,
                                   yrend = 2100) {
@@ -54,7 +54,3 @@ build_refugia_rasters <- function(percentdays,
     results <- terra::rast(results)
 
     }
-
-
-
-

@@ -8,8 +8,8 @@
 #'
 #' @param area Character. Name of the area; must match a key in `abalone::extent_list`.
 #' @param yr_range Numeric vector. Range of years to include. Default is 1990–2100.
-#' @param def Character. Refugia definition name (e.g., "def5") used in input file paths.
-#' @param input_dir Character. Parent directory where input files live. Defaults to `/out`
+#' @param def Character. Refugia definition name (e.g., "def8") used in input file paths.
+#' @param input_file R Object. Dataframe of % of year stressed. Defaults to `abalone::percentdays`
 #' @param cons_thresh Integer. Value representing the conservative temporal threshold to define refugia. Defaults to 95(%)
 #' @param lib_thresh Integer. Value representing the liberal temporal threshold to define refugia. Defaults to 50(%)
 #' @param extent_list List of vectors. Defaults to `abalone::extent_list`
@@ -23,17 +23,13 @@
 #' @importFrom ggplot2 ylim theme element_blank element_text unit geom_hline
 #'
 #' @examples
-#' \dontrun{
-#' percentdays_ts(area = "monterey_bay", yr_range = 1990:2100, def = "def5",
-#' input_dir = "/Users/admin/Documents/GitHub/savingabalone/out",
-#' cons_thresh = 95, lib_thresh = 50)
-#' }
+#' viz_percentdays_ts(area = "monterey_bay", yr_range = 1990:2100, def = "def8",
+#' input_file = abalone::percentdays, cons_thresh = 95, lib_thresh = 50)
 
-
-percentdays_ts <- function(area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
+viz_percentdays_ts <- function(area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
                            yr_range = 1990:2100,
-                           def = c("def3", "def4", "def5", "def6", "def7", "def8"),
-                           input_dir = "/Users/admin/Documents/GitHub/savingabalone/out",
+                           def = "def8",
+                           input_file = abalone::percentdays,
                            cons_thresh = 95,
                            lib_thresh = 50,
                            extent_list = abalone::extent_list) {
@@ -49,31 +45,69 @@ percentdays_ts <- function(area = c("monterey_bay", "channel_islands", "fort_bra
   ex_vals <- extent_list[[area]]
   ex <- terra::ext(ex_vals["xmin"], ex_vals["xmax"], ex_vals["ymin"], ex_vals["ymax"])
 
-  # Construct file paths
-  gfdltv_path <- file.path(input_dir, def, "_2_percent_days_rasts", "gfdltv_percentdays.nc")
-  hadtv_path  <- file.path(input_dir, def, "_2_percent_days_rasts", "hadtv_percentdays.nc")
-  ipsltv_path <- file.path(input_dir, def, "_2_percent_days_rasts", "ipsltv_percentdays.nc")
+  # Create base raster
+  base_rast <- cali_rast()
+  n_layers <- length(yr_range)
 
-  # Load and crop rasters
-  tt_gfdl <- terra::rast(gfdltv_path) %>% terra::crop(ex)
-  tt_ipsl <- terra::rast(ipsltv_path) %>% terra::crop(ex)
-  tt_had  <- terra::rast(hadtv_path)  %>% terra::crop(ex)
+  # Preallocate raster stacks for each model
+  gfdl_stack <- terra::rast(ncol = ncol(base_rast),
+                            nrow = nrow(base_rast),
+                            nlyr = n_layers,
+                            extent = terra::ext(base_rast),
+                            crs = terra::crs(base_rast))  %>% terra::crop(ex)
+  ipsl_stack <- terra::rast(gfdl_stack) %>% terra::crop(ex)
+  hadtv_stack <- terra::rast(gfdl_stack) %>% terra::crop(ex)
+
+  for (i in seq_along(yr_range)) {
+
+    yr <- yr_range[i]
+
+    all_cells <- terra::cells(base_rast)
+    cell_coords <- terra::xyFromCell(base_rast, all_cells)
+    cell_df <- data.frame(cellID = all_cells, x = cell_coords[,1], y = cell_coords[,2])
+    cell_df_cropped <- dplyr::filter(cell_df,
+                                     x >= ex[1] & x <= ex[2] & y >= ex[3] & y <= ex[4])
+
+    # GFDL
+    gfdl_df <- input_file %>% dplyr::filter(model == "gfdltv", year == yr)
+    gfdl_df_cropped <- dplyr::filter(gfdl_df, cellID %in% cell_df_cropped$cellID)
+    gfdl_rast <- base_rast %>% terra::crop(ex)
+    gfdl_rast[terra::cells(gfdl_rast)] <- gfdl_df_cropped$percent
+    gfdl_stack[[i]] <- gfdl_rast
+    names(gfdl_stack)[i] <- as.character(yr)
+
+    # IPSL
+    ipsl_df <- input_file %>% dplyr::filter(model == "ipsltv", year == yr)
+    ipsl_df_cropped <- dplyr::filter(ipsl_df, cellID %in% cell_df_cropped$cellID)
+    ipsl_rast <- base_rast %>% terra::crop(ex)
+    ipsl_rast[terra::cells(ipsl_rast)] <- ipsl_df_cropped$percent
+    ipsl_stack[[i]] <- ipsl_rast
+    names(ipsl_stack)[i] <- as.character(yr)
+
+    # IPSL
+    had_df <- input_file %>% dplyr::filter(model == "hadtv", year == yr)
+    had_df_cropped <- dplyr::filter(had_df, cellID %in% cell_df_cropped$cellID)
+    had_rast <- base_rast %>% terra::crop(ex)
+    had_rast[terra::cells(had_rast)] <- had_df_cropped$percent
+    hadtv_stack[[i]] <- had_rast
+    names(hadtv_stack)[i] <- as.character(yr)
+  }
 
   emplist <- vector("list", length = length(yr_range))
 
   for (i in 1:length(yr_range)) {
 
-    rasty <- tt_gfdl[[i]]
+    rasty <- gfdl_stack[[i]]
     total <- terra::values(rasty, na.rm=T) %>% sum # Sum all the cells in this area
     total <- total/terra::values(rasty, na.rm = T) %>% length
     df_gfdl <- data.frame(model = "gfdltv", val = total, year = yr_range[i])
 
-    rasty <- tt_ipsl[[i]]
+    rasty <- ipsl_stack[[i]]
     total <- terra::values(rasty, na.rm=T) %>% sum
     total <- total/terra::values(rasty, na.rm = T) %>% length
     df_ipsl <- data.frame(model = "ipsltv", val = total, year = yr_range[i])
 
-    rasty <- tt_had[[i]]
+    rasty <- hadtv_stack[[i]]
     total <- terra::values(rasty, na.rm=T) %>% sum
     total <- total/terra::values(rasty, na.rm = T) %>% length
     df_had <- data.frame(model = "hadtv", val = total, year = yr_range[i])
