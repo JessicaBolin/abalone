@@ -28,7 +28,11 @@ viz_stress_map <- function(yr = 2100,
                       infile = abalone::percentdays
                       ) {
 
-  tmap::tmap_options(show.messages = F)
+  # Temporarily suppress tmap messages
+  old_opt <- options(tmap.messages = FALSE)
+  on.exit(options(old_opt), add = TRUE)
+
+  tmap::tmap_options(show.messages = FALSE)
   model2 <- if (model == "^zoom") "zoom" else model
 
   # Load shapefiles within each worker
