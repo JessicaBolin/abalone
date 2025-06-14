@@ -15,10 +15,8 @@
 #' @importFrom magrittr %>%
 #'
 #' @examples
-#' tmap::tmap_options(show.messages = FALSE, component.autoscale = FALSE)
-#' suppressWarnings(suppressMessages(
 #' viz_stress_map(yr = 2098, model = "gfdltv", area = "monterey_bay",
-#' def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)))
+#' def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)
 #'
 
 viz_stress_map <- function(yr = 2100,
@@ -33,7 +31,7 @@ viz_stress_map <- function(yr = 2100,
   old_opt <- options(tmap.messages = FALSE)
   on.exit(options(old_opt), add = TRUE)
 
-  tmap::tmap_options(show.messages = FALSE, component.autoscale = F)
+  tmap::tmap_options(show.messages = FALSE, component.autoscale = FALSE)
 
   model2 <- if (model == "^zoom") "zoom" else model
 
@@ -59,11 +57,9 @@ viz_stress_map <- function(yr = 2100,
 
   # Map
   tt <- tmap::tm_shape(r) +
-    tmap::tm_raster(style = "cont",
-                    palette = "white",
-                    legend.show = FALSE) +
-    tmap::tm_shape(eez) +
-    tmap::tm_polygons(col = "white") +
+    tmap::tm_raster(col.scale = tmap::tm_scale_continuous(),
+                    col = "white",
+                    col.legend = tmap::tm_legend_hide()) +
     tmap::tm_graticules(ticks = TRUE,
                         lwd = 0.5,
                         col = "grey50",
@@ -72,30 +68,38 @@ viz_stress_map <- function(yr = 2100,
     tmap::tm_shape(ca) +
     tmap::tm_polygons() +
     tmap::tm_shape(r) +
-    tmap::tm_raster(style = "cont",
-              palette = viridis::magma(255),
-              breaks = my_breaks, title = "%") +
+      tmap::tm_raster(
+        col.scale = tmap::tm_scale(
+          breaks = my_breaks,
+          values = viridis::magma(255)),
+        col.legend = tmap::tm_legend(title = "% of year",
+                                     position = c("right", "top"),
+                                     text.size = 0.9,
+                                     frame = TRUE,
+                                     frame.lwd = 0.001,
+                                     title.size = 1.1,
+                                     bg.alpha = 0,
+                                     width = 6,
+                                     height = 11)
+      ) +
     tmap::tm_shape(ca) +
-    tmap::tm_polygons(alpha = 0.1) +
-    tmap::tm_legend(position = c("right", "top"),
-                    legend.text.size = 1,
-              frame = TRUE,
-              frame.lwd = 0.001) +
-    tmap::tm_layout(main.title = paste0(def %>% toupper(), " | ",
-                                  model2, " | ", yr, " | % yr stressed"),
+    tmap::tm_polygons(fill_alpha = 0.1) +
+    tmap::tm_title(paste0(def %>% toupper(), " | ",
+                          model2, " | ", yr, " | % yr stressed")) +
+    tmap::tm_scalebar(position = c("left", "bottom"),
+                      text.size = 0.7) +
+    tmap::tm_layout(
               legend.title.size = 1.4,
               bg.color = "white",
-              legend.frame = FALSE) +
-    tmap::tm_scale_bar(position = "left",
-                       text.size = 0.8)
+              legend.frame = FALSE)
+
 
   return(tt)
 }
 
 
-# library(tmap)
-# library(tidyverse)
-# yr = 1990
+# #
+# yr = 2089
 # model = "gfdltv"
 # area = "monterey_bay"
 # def = "def8"
