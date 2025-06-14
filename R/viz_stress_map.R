@@ -15,9 +15,9 @@
 #' @importFrom magrittr %>%
 #'
 #' @examples
-#' if (interactive()) {
+#' suppressWarnings(suppressMessages(
 #' viz_stress_map(yr = 2098, model = "gfdltv", area = "monterey_bay",
-#' def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)
+#' def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)))
 #'
 
 viz_stress_map <- function(yr = 2100,
