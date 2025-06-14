@@ -30,9 +30,10 @@ viz_stress_map(
 Produces a customized \code{tmap} object of a map of stress for the year of interest
 }
 \description{
-This produces a nice \code{tmap} object that shows the \% of year stressful conditions were experienced by abalone. Note that this code uses \code{tmap} Version 3 code syntax.
+This produces a nice \code{tmap} object that shows the \% of year stressful conditions were experienced by abalone.
 }
 \examples{
+tmap::tmap_options(show.messages = FALSE, component.autoscale = FALSE)
 suppressWarnings(suppressMessages(
 viz_stress_map(yr = 2098, model = "gfdltv", area = "monterey_bay",
 def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)))
