@@ -5,7 +5,6 @@
 <!-- badges: start -->
 
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) [![MacOS](https://github.com/JessicaBolin/abalone/actions/workflows/MacOS.yaml/badge.svg)](https://github.com/JessicaBolin/abalone/actions/workflows/MacOS.yaml) [![Windows](https://github.com/JessicaBolin/abalone/actions/workflows/Windows.yaml/badge.svg)](https://github.com/JessicaBolin/abalone/actions/workflows/Windows.yaml)
-[![R-CMD-check](https://github.com/JessicaBolin/abalone/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JessicaBolin/abalone/actions/workflows/R-CMD-check.yaml)
 
 <!-- badges: end -->
 
