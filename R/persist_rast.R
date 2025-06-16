@@ -60,6 +60,14 @@ persist_rast <- function(model = c("ens", "gfdltv", "hadtv", "ipsltv"),
 
 }
 
-# persist(model = "ens",
-#         yr_range <- 2070:2099,
-#         persist_thresh = 50, save_path = NULL)
+
+# for (i in c("ens", "gfdltv", "hadtv", "ipsltv")) {
+#   persist(model = i, yr_range <- 1990:2019, persist_thresh = 50, save_path = NULL)
+#   persist(model = i, yr_range <- 2020:2049, persist_thresh = 50, save_path = NULL)
+#   persist(model = i, yr_range <- 2070:2099, persist_thresh = 50, save_path = NULL)
+#   persist(model = i, yr_range <- 1990:2019, persist_thresh = 95, save_path = NULL)
+#   persist(model = i, yr_range <- 2020:2049, persist_thresh = 95, save_path = NULL)
+#   persist(model = i, yr_range <- 2070:2099, persist_thresh = 95, save_path = NULL)
+# }
+
+
