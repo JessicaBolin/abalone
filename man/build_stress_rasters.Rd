@@ -5,10 +5,12 @@
 \title{Create annual stress \% rasters}
 \usage{
 build_stress_rasters(
-  percentdays,
+  percentdays = abalone::percentdays,
   esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
   yrst = 1990,
-  yrend = 2100
+  yrend = 2100,
+  progress = TRUE,
+  save_path = NULL
 )
 }
 \arguments{
@@ -19,6 +21,10 @@ build_stress_rasters(
 \item{yrst}{Integer. Start year.}
 
 \item{yrend}{Integer. End year.}
+
+\item{progress}{Logical. Show progress bar? Default is TRUE.}
+
+\item{save_path}{Character. Directory to save output to. Optional, set to NULL if not needed.}
 }
 \value{
 Produces a \code{terra::rast()} object of \% of year stressed, for the ESM specified, for all years between \code{yrst} and \code{yrend}.
@@ -28,9 +34,9 @@ This function produces a \code{terra:rast()} object containing annual stress ras
 the percentage of each year that abalone experience stress based on the definition chosen.
 }
 \examples{
-ens_stress <- build_stress_rasters(percentdays = percentdays, esm = "ens",
-yrst = 1990, yrend = 2100)
+ens_stress <- build_stress_rasters(percentdays = abalone::percentdays, esm = "ens",
+yrst = 1990, yrend = 1992, progress = FALSE, save_path = NULL)
 ens_stress
-terra::plot(ens_stress[[98]], main = "\% stress in 2088")
+terra::plot(ens_stress[[2]], main = "\% stress in 1992")
 
 }

@@ -32,3 +32,15 @@ BugReports: https://github.com/JessicaBolin/abalone/issues
 Depends: 
     R (>= 3.5)
 LazyData: true
+Collate:
+    'cali_rast.R'
+    'read_shp.R'
+    'percentdays.R'
+    'data_extent_list.R'
+    'build_stress_rasters.R'
+    'viz_stress_map.R'
+    'viz_percentdays_ts.R'
+    'build_refugia_rasters.R'
+    'viz_refugia_map.R'
+    'viz_refugia_ts.R'
+
