@@ -22,6 +22,7 @@ reference:
   - viz_stress_map
   - viz_percentdays_ts
   - build_refugia_rasters
+  - viz_refugia_map
 - title: Misc. functions
   desc: >
    These are miscellaneous functions.
