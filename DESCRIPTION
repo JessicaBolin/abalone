@@ -21,6 +21,7 @@ Imports:
     sf,
     terra,
     tmap,
+    usethis,
     viridis
 Suggests: 
     knitr,

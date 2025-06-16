@@ -10,7 +10,8 @@ build_refugia_rasters(
   yrst = 1990,
   yrend = 2100,
   thresh = c(50, 95),
-  progress = TRUE
+  progress = TRUE,
+  save_path = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ build_refugia_rasters(
 \item{thresh}{Integer. Temporal threshold (\%) used for defining annual refugia. Choose either 50 (liberal) or 95\% (conservative).}
 
 \item{progress}{Logical. Show progress bar? Default is TRUE.}
+
+\item{save_path}{Character. Directory to save output to. Optional, set to NULL if not needed.}
 }
 \value{
 Produces a \code{terra::rast()} object of binary refugia (0/1), for the ESM specified, for all years between \code{yrst} and \code{yrend}.
@@ -36,9 +39,9 @@ The function also displays a progress bar.
 }
 \examples{
 ens_refugia <- build_refugia_rasters(percentdays = abalone::percentdays,
-esm = "ens", yrst = 1990, yrend = 2100, thresh = 50, progress = FALSE)
+esm = "ens", yrst = 1990, yrend = 2100, thresh = 50, progress = FALSE,
+save_path = NULL)
 ens_refugia
 terra::plot(ens_refugia[[98]], main = "Refugia in 2088")
-
 
 }
