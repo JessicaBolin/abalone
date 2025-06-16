@@ -28,7 +28,8 @@ This function produces a \code{terra:rast()} object containing annual stress ras
 the percentage of each year that abalone experience stress based on the definition chosen.
 }
 \examples{
-ens_stress <- build_stress_rasters(percentdays = percentdays, esm = "ens", yrst = 1990, yrend = 2100)
+ens_stress <- build_stress_rasters(percentdays = percentdays, esm = "ens",
+yrst = 1990, yrend = 2100)
 ens_stress
 terra::plot(ens_stress[[98]], main = "\% stress in 2088")
 

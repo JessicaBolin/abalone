@@ -15,42 +15,41 @@
 #' @importFrom dplyr filter
 #'
 #' @examples
-#' ens_stress <- build_stress_rasters(percentdays = percentdays, esm = "ens", yrst = 1990, yrend = 2100)
+#' ens_stress <- build_stress_rasters(percentdays = percentdays, esm = "ens",
+#' yrst = 1990, yrend = 2100)
 #' ens_stress
 #' terra::plot(ens_stress[[98]], main = "% stress in 2088")
 #'
-
-
 build_stress_rasters <- function(percentdays,
-                                  esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
-                                  yrst = 1990,
-                                  yrend = 2100) {
+                                 esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
+                                 yrst = 1990,
+                                 yrend = 2100) {
 
   base_rast <- cali_rast()
   results <- list()
 
-    model_rast <- terra::rast(
-      ncol = ncol(base_rast),
-      nrow = nrow(base_rast),
-      nlyr = length(yrst:yrend),
-      extent = terra::ext(base_rast),
-      crs = terra::crs(base_rast)
-    )
+  model_rast <- terra::rast(
+    ncol = ncol(base_rast),
+    nrow = nrow(base_rast),
+    nlyr = length(yrst:yrend),
+    extent = terra::ext(base_rast),
+    crs = terra::crs(base_rast)
+  )
 
-    for (i in yrst:yrend) {
+  for (i in yrst:yrend) {
 
-      df_sub <- subset(percentdays, model == esm) %>%
-        dplyr::filter(year == i)
+    df_sub <- subset(percentdays, model == esm) %>%
+      dplyr::filter(year == i)
 
-      yr_rast <- cali_rast()
-      yr_rast[terra::cells(yr_rast)] <- df_sub$percent
-      terra::time(yr_rast) <- i
-      names(yr_rast) <- as.character(i)
+    yr_rast <- cali_rast()
+    yr_rast[terra::cells(yr_rast)] <- df_sub$percent
+    terra::time(yr_rast) <- i
+    names(yr_rast) <- as.character(i)
 
-      model_rast[[i - yrst + 1]] <- yr_rast
-    }
+    model_rast[[i - yrst + 1]] <- yr_rast
+  }
 
-    results[[esm]] <- model_rast
-    results <- terra::rast(results)
+  results[[esm]] <- model_rast
+  results <- terra::rast(results)
 
-    }
+}
