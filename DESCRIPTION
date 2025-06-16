@@ -43,4 +43,5 @@ Collate:
     'build_refugia_rasters.R'
     'viz_refugia_map.R'
     'viz_refugia_ts.R'
+    'persist_rast.R'
 

@@ -85,8 +85,8 @@ build_stress_rasters <- function(percentdays = abalone::percentdays,
 
 }
 
-# For internal package development (no save path argument!)
-# build_stress_rasters(percentdays = abalone::percentdays, esm = "ens", yrst = 1990, yrend = 2100, progress = TRUE, save_path = "/Users/admin/Desktop/untitled folder")
+ # For internal package development (no save path argument!)
+ # build_stress_rasters(percentdays = abalone::percentdays, esm = "ens", yrst = 1990, yrend = 2100, progress = TRUE, save_path = "/Users/admin/Desktop/untitled folder")
  # build_stress_rasters(percentdays = abalone::percentdays, esm = "gfdltv", yrst = 1990, yrend = 2100, progress = TRUE)
  # build_stress_rasters(percentdays = abalone::percentdays, esm = "hadtv", yrst = 1990, yrend = 2100, progress = TRUE)
  # build_stress_rasters(percentdays = abalone::percentdays, esm = "ipsltv", yrst = 1990, yrend = 2100, progress = TRUE)
