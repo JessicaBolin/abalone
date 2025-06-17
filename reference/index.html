@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">abalone</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,9 +37,9 @@
     </div>
 
     <div class="section level2">
-      <h2 id="refugia-workflow">Refugia workflow<a class="anchor" aria-label="anchor" href="#refugia-workflow"></a></h2>
+      <h2 id="create-rasters">Create rasters<a class="anchor" aria-label="anchor" href="#create-rasters"></a></h2>
 
-      <div class="section-desc"><p>Functions used to define and map refugia. Ideally, these should be run in descending order.</p></div>
+      <div class="section-desc"><p>Functions used to define and create refugia rasters. These should be run in descending order.</p></div>
 
 
     </div><div class="section level2">
@@ -55,34 +55,10 @@
         <dd>Create annual stress % rasters</dd>
       </dl><dl><dt>
 
-          <code><a href="viz_stress_map.html">viz_stress_map()</a></code>
-
-        </dt>
-        <dd>Map of % of year stressed</dd>
-      </dl><dl><dt>
-
-          <code><a href="viz_percentdays_ts.html">viz_percentdays_ts()</a></code>
-
-        </dt>
-        <dd>Plot percent of days meeting refugia conditions over time</dd>
-      </dl><dl><dt>
-
           <code><a href="build_refugia_rasters.html">build_refugia_rasters()</a></code>
 
         </dt>
         <dd>Build rasters of binary refugia</dd>
-      </dl><dl><dt>
-
-          <code><a href="viz_refugia_map.html">viz_refugia_map()</a></code>
-
-        </dt>
-        <dd>Map of refugia per year</dd>
-      </dl><dl><dt>
-
-          <code><a href="viz_refugia_ts.html">viz_refugia_ts()</a></code>
-
-        </dt>
-        <dd>Plot proportion of year meeting refugia conditions over time</dd>
       </dl><dl><dt>
 
           <code><a href="persist_rast.html">persist_rast()</a></code>
@@ -91,10 +67,62 @@
         <dd>Build rasters of persistent refugia</dd>
       </dl><dl><dt>
 
+          <code><a href="deltarast.html">deltarast()</a></code>
+
+        </dt>
+        <dd>Build rasters of persistent refugia</dd>
+      </dl></div><div class="section level2">
+      <h2 id="vizualise-refugia">Vizualise refugia<a class="anchor" aria-label="anchor" href="#vizualise-refugia"></a></h2>
+
+      <div class="section-desc"><p>Functions used to map refugia with <code>tmap</code>.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="viz_stress_map.html">viz_stress_map()</a></code>
+
+        </dt>
+        <dd>Map of % of year stressed</dd>
+      </dl><dl><dt>
+
+          <code><a href="viz_refugia_map.html">viz_refugia_map()</a></code>
+
+        </dt>
+        <dd>Map of refugia per year</dd>
+      </dl><dl><dt>
+
           <code><a href="viz_persist.html">viz_persist()</a></code>
 
         </dt>
         <dd>Map of persistence of refugia</dd>
+      </dl></div><div class="section level2">
+      <h2 id="time-series-plots-of-refugia">Time series plots of refugia<a class="anchor" aria-label="anchor" href="#time-series-plots-of-refugia"></a></h2>
+
+      <div class="section-desc"><p>Functions used to map annual time series of refugia</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="viz_percentdays_ts.html">viz_percentdays_ts()</a></code>
+
+        </dt>
+        <dd>Plot percent of days meeting refugia conditions over time</dd>
+      </dl><dl><dt>
+
+          <code><a href="viz_refugia_ts.html">viz_refugia_ts()</a></code>
+
+        </dt>
+        <dd>Plot proportion of year meeting refugia conditions over time</dd>
       </dl></div><div class="section level2">
       <h2 id="misc-functions">Misc. functions<a class="anchor" aria-label="anchor" href="#misc-functions"></a></h2>
 
