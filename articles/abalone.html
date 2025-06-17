@@ -77,6 +77,46 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jessicabolin.github.io/abalone/">abalone</a></span><span class="op">)</span></span></code></pre></div>
 <p>Here I will document examples of how to run refugia functions. More
 to come.</p>
+<div class="section level2">
+<h2 id="create-raster-of-stress">Create raster of % stress<a class="anchor" aria-label="anchor" href="#create-raster-of-stress"></a>
+</h2>
+<p>First, we use <code>build_stress</code> to create rasters of annual
+stress. This is defined as the percentage of each year that abalone
+experience stress, based on the refugia definition chosen.</p>
+<p>This produces a <code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast()</a></code> object of stress for each
+grid cell for the state of California. The user can specify to save the
+output to a local directory via the <code>save_path</code> argument -
+leaving it as NULL will not save the file.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ens_stress</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_stress.html">build_stress</a></span><span class="op">(</span>percentdays <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, </span>
+<span>                           esm <span class="op">=</span> <span class="st">"ens"</span>, </span>
+<span>                           yrst <span class="op">=</span> <span class="fl">1990</span>, </span>
+<span>                           yrend <span class="op">=</span> <span class="fl">2100</span>,</span>
+<span>                           progress <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>                           save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ens_stress</span></span>
+<span><span class="co">#&gt; class       : SpatRaster </span></span>
+<span><span class="co">#&gt; size        : 286, 286, 111  (nrow, ncol, nlyr)</span></span>
+<span><span class="co">#&gt; resolution  : 0.03321678, 0.03323263  (x, y)</span></span>
+<span><span class="co">#&gt; extent      : -126, -116.5, 32.49849, 42.00302  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">#&gt; coord. ref. : lon/lat WGS 84 (EPSG:4326) </span></span>
+<span><span class="co">#&gt; source(s)   : memory</span></span>
+<span><span class="co">#&gt; varnames    : emptyrast_100 </span></span>
+<span><span class="co">#&gt;               emptyrast_100 </span></span>
+<span><span class="co">#&gt;               emptyrast_100 </span></span>
+<span><span class="co">#&gt;               ...</span></span>
+<span><span class="co">#&gt; names       :     1990,     1991,     1992,     1993,    1994,     1995, ... </span></span>
+<span><span class="co">#&gt; min values  :  0.00000,  0.00000,  0.00000,  0.00000,  0.0000,  0.00000, ... </span></span>
+<span><span class="co">#&gt; max values  : 45.20548, 48.49315, 55.19126, 52.05479, 46.0274, 59.72603, ...</span></span></code></pre></div>
+<p>Above, the resolution is 3km, extent is for California, and the file
+has 111 layers, corresponding to 111 years between the user-specified
+year range in the function call.</p>
+<p>Now, we can vizualise what this looks like.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ens_stress</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">"% Stress in 1990"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="abalone_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+</div>
   </main>
 </div>
 

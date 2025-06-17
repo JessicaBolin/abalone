@@ -80,12 +80,6 @@
 <li><p>Choose internal R files to host in <code>/extdata</code>. Remove
 non-needed ones</p></li>
 <li><p>Standarize function arguments (e.g., thresh)</p></li>
-<li>
-<p>Fix licence meta-information note</p>
-<pre><code> checking DESCRIPTION meta-information ... NOTE
-  License components which are templates and need '+ file LICENSE':
-    MIT</code></pre>
-</li>
 <li><p>Fix globalenv() note on R CMD Check</p></li>
 </ul>
 <pre><code>checking R code for possible problems ... NOTE
@@ -109,10 +103,7 @@ non-needed ones</p></li>
   viz_stress_map: no visible binding for global variable ‘year’
   Undefined global functions or variables:
     cellID model val x y year
-  
-  Found the following assignments to the global environment:
-  File ‘abalone/R/viz_refugia_map.R’:
-    assign("custom_palette", custom_palette, envir = globalenv())</code></pre>
+</code></pre>
   </main>
 </div>
 
