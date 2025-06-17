@@ -9,6 +9,10 @@ editor_options:
 - Moving to semantic versioning! 
 - Adding new functions
 - Patch fix: changing internal files sourced with `system.file()`
+- Standarized function names
+- Fixed licence note on R CMD Check
+- Fixed globalenv() `custom_palette` note on R CMD Check
+- Added `globals.R` to fix global variable note on R CMD Check
 
 # abalone 0.0.2
 

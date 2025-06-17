@@ -2,7 +2,7 @@
 title: "To do"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Rshiny}
+  %\VignetteIndexEntry{To do}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,14 +16,6 @@ Here I list in progress work for the next version update:
 -   Choose internal R files to host in `/extdata`. Remove non-needed ones
 
 -   Standarize function arguments (e.g., thresh)
-
--   Fix licence meta-information note
-
-    ```         
-     checking DESCRIPTION meta-information ... NOTE
-      License components which are templates and need '+ file LICENSE':
-        MIT
-    ```
 
 -   Fix globalenv() note on R CMD Check
 
@@ -49,8 +41,5 @@ checking R code for possible problems ... NOTE
   viz_stress_map: no visible binding for global variable ‘year’
   Undefined global functions or variables:
     cellID model val x y year
-  
-  Found the following assignments to the global environment:
-  File ‘abalone/R/viz_refugia_map.R’:
-    assign("custom_palette", custom_palette, envir = globalenv())
+
 ```

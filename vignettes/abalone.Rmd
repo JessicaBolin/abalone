@@ -18,4 +18,29 @@ knitr::opts_chunk$set(
 library(abalone)
 ```
 
-Here I will document examples of how to run refugia functions. More to come. 
+Here I will document examples of how to run refugia functions. More to come.
+
+## Create raster of % stress
+
+First, we use `build_stress` to create rasters of annual stress. This is defined as the percentage of each year that abalone experience stress, based on the refugia definition chosen.
+
+This produces a `terra::rast()` object of stress for each grid cell for the state of California. The user can specify to save the output to a local directory via the `save_path` argument - leaving it as NULL will not save the file.  
+
+```{r}
+ens_stress <- build_stress(percentdays = abalone::percentdays, 
+                           esm = "ens", 
+                           yrst = 1990, 
+                           yrend = 2100,
+                           progress = FALSE, 
+                           save_path = NULL)
+
+ens_stress
+```
+
+Above, the resolution is 3km, extent is for California, and the file has 111 layers, corresponding to 111 years between the user-specified year range in the function call. 
+
+Now, we can vizualise what this looks like.
+
+```{r}
+terra::plot(ens_stress[[1]], main = "% Stress in 1990")
+```

@@ -10,7 +10,7 @@ Authors@R: c(
     person("Mer", "Pozo Buil", role = "ctb"),
     person("Steven", "Bograd", role = "ctb"))
 Description: This package provides functions used for defining and vizualising climate refugia for red abalone across California.  
-License: MIT 
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
@@ -47,4 +47,4 @@ Collate:
     'viz_persist.R'
     'build_delta.R'
     'viz_delta.R'
-
+    'globals.R'

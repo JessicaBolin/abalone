@@ -64,11 +64,16 @@ viz_refugia <- function(yr = 2100,
 
   #terra::plot(r)
 
+  # refugiacolors <- function() {
+  #   # Always define the palette explicitly
+  #   custom_palette <- c("0" = "#5D3A9B",  # purple for 0
+  #                       "1" = "#E66100")  # orange for 1
+  #   assign("custom_palette", custom_palette, envir = globalenv())
+  # }
+
   refugiacolors <- function() {
-    # Always define the palette explicitly
-    custom_palette <- c("0" = "#5D3A9B",  # purple for 0
-                        "1" = "#E66100")  # orange for 1
-    assign("custom_palette", custom_palette, envir = globalenv())
+    c("0" = "#5D3A9B",  # purple for 0
+      "1" = "#E66100")  # orange for 1
   }
 
   # Map
