@@ -16,13 +16,13 @@
 #' @importFrom magrittr %>%
 #'
 #' @examples
-#' viz_refugia_map(yr = 2098, model = "gfdltv", area = "monterey_bay",
+#' viz_refugia(yr = 2098, model = "gfdltv", area = "monterey_bay",
 #' def = "def8", extents = abalone::extent_list, infile = abalone::percentdays,
 #' thresh = 50)
 #'
 
 
-viz_refugia_map <- function(yr = 2100,
+viz_refugia <- function(yr = 2100,
                            model = c("gfdltv", "hadtv", "ipsltv", "ens"),
                            area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
                            def = "def8",

@@ -23,10 +23,10 @@
 #' @importFrom ggplot2 ylim theme element_blank element_text unit geom_hline
 #'
 #' @examples
-#' viz_percentdays_ts(area = "monterey_bay", yr_range = 1990:2100, def = "def8",
+#' ts_viz_percentdays(area = "monterey_bay", yr_range = 1990:2100, def = "def8",
 #' input_file = abalone::percentdays, cons_thresh = 95, lib_thresh = 50)
 
-viz_percentdays_ts <- function(area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
+ts_viz_percentdays <- function(area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
                            yr_range = 1990:2100,
                            def = "def8",
                            input_file = abalone::percentdays,

@@ -12,30 +12,31 @@ articles:
   contents:
   - Rshiny
   - definitions
+  - todo
 
 reference:
 - title: Create rasters
   desc: >
    Functions used to define and create refugia rasters. These should be run in descending order.
   contents:
-  - build_stress_rasters
-  - build_refugia_rasters
-  - persist_rast
-  - deltarast
+  - build_stress
+  - build_refugia
+  - build_persist
+  - build_delta
 - title: Vizualise refugia
   desc: >
    Functions used to map refugia with `tmap`.
   contents:
-  - viz_stress_map
-  - viz_refugia_map
+  - viz_stress
+  - viz_refugia
   - viz_persist
-  - delta_viz
+  - viz_delta
 - title: Time series plots of refugia
   desc: >
    Functions used to map annual time series of refugia
   contents:
-  - viz_percentdays_ts
-  - viz_refugia_ts
+  - ts_viz_percentdays
+  - ts_viz_refugia
 - title: Misc. functions
   desc: >
    These are miscellaneous functions.

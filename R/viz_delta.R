@@ -19,11 +19,11 @@
 
 #'
 #' @examples
-#' delta_viz(model = "ens", area = "monterey_bay",
+#' viz_delta(model = "ens", area = "monterey_bay",
 #' def = "def8", histrange = 2020:2049, projrange = 2070:2099,
 #' extents = abalone::extent_list, persist_thresh = 50, save_path = NULL)
 #'
-delta_viz <- function(model = c("gfdltv", "hadtv", "ipsltv", "ens"),
+viz_delta <- function(model = c("gfdltv", "hadtv", "ipsltv", "ens"),
                       area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
                       def = "def8",
                       histrange = 2020:2049,

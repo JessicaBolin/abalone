@@ -1,0 +1,56 @@
+---
+title: "To do"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Rshiny}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Here I list in progress work for the next version update:
+
+-   Getting started walkthrough
+
+-   Change examples in functions to only a few years
+
+-   Choose internal R files to host in `/extdata`. Remove non-needed ones
+
+-   Standarize function arguments (e.g., thresh)
+
+-   Fix licence meta-information note
+
+    ```         
+     checking DESCRIPTION meta-information ... NOTE
+      License components which are templates and need '+ file LICENSE':
+        MIT
+    ```
+
+-   Fix globalenv() note on R CMD Check
+
+```         
+checking R code for possible problems ... NOTE
+  build_refugia_rasters: no visible binding for global variable ‘model’
+  build_refugia_rasters: no visible binding for global variable ‘year’
+  build_stress_rasters: no visible binding for global variable ‘model’
+  build_stress_rasters: no visible binding for global variable ‘year’
+  viz_percentdays_ts: no visible binding for global variable ‘x’
+  viz_percentdays_ts: no visible binding for global variable ‘y’
+  viz_percentdays_ts: no visible binding for global variable ‘model’
+  viz_percentdays_ts: no visible binding for global variable ‘year’
+  viz_percentdays_ts: no visible binding for global variable ‘cellID’
+  viz_percentdays_ts: no visible binding for global variable ‘val’
+  viz_refugia_map: no visible binding for global variable ‘year’
+  viz_refugia_ts: no visible binding for global variable ‘x’
+  viz_refugia_ts: no visible binding for global variable ‘y’
+  viz_refugia_ts: no visible binding for global variable ‘model’
+  viz_refugia_ts: no visible binding for global variable ‘year’
+  viz_refugia_ts: no visible binding for global variable ‘cellID’
+  viz_refugia_ts: no visible binding for global variable ‘val’
+  viz_stress_map: no visible binding for global variable ‘year’
+  Undefined global functions or variables:
+    cellID model val x y year
+  
+  Found the following assignments to the global environment:
+  File ‘abalone/R/viz_refugia_map.R’:
+    assign("custom_palette", custom_palette, envir = globalenv())
+```

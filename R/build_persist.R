@@ -15,13 +15,13 @@
 #' @importFrom dplyr filter
 #'
 #' @examples
-#' persist_refugia <- persist_rast(model = "ens", yr_range = 2070:2099,
+#' persist_refugia <- build_persist(model = "ens", yr_range = 2070:2099,
 #' persist_thresh = 50, save_path = NULL)
 #' persist_refugia
 #' terra::plot(persist_refugia)
 
 
-persist_rast <- function(model = c("ens", "gfdltv", "hadtv", "ipsltv"),
+build_persist <- function(model = c("ens", "gfdltv", "hadtv", "ipsltv"),
                     yr_range = c(1990:2019),
                     persist_thresh = c(50, 95),
                     save_path = NULL) {

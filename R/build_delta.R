@@ -17,12 +17,12 @@
 #' @importFrom dplyr filter
 #'
 #' @examples
-#' deltar <- deltarast(thresh = 50, model = "ens", histrange = 2020:2049,
+#' deltar <- build_delta(thresh = 50, model = "ens", histrange = 2020:2049,
 #' projrange = 2070:2099, save_path = NULL)
 #' deltar
 #' terra::plot(deltar)
 
-deltarast <- function(thresh = c(50, 95),
+build_delta <- function(thresh = c(50, 95),
                       model = c("ens", "gfdltv", "hadtv", "ipsltv"),
                       def = "def8",
                       histrange = 2020:2049,

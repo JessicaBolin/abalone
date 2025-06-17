@@ -15,11 +15,11 @@
 #' @importFrom magrittr %>%
 #'
 #' @examples
-#' viz_stress_map(yr = 2098, model = "gfdltv", area = "monterey_bay",
+#' viz_stress(yr = 2098, model = "gfdltv", area = "monterey_bay",
 #' def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)
 #'
 
-viz_stress_map <- function(yr = 2100,
+viz_stress <- function(yr = 2100,
                       model = c("gfdltv", "hadtv", "ipsltv", "ens"),
                       area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
                       def = "def8",

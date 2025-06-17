@@ -17,12 +17,12 @@
 #' @importFrom dplyr filter
 #'
 #' @examples
-#' ens_stress <- build_stress_rasters(percentdays = abalone::percentdays, esm = "ens",
+#' ens_stress <- build_stress(percentdays = abalone::percentdays, esm = "ens",
 #' yrst = 1990, yrend = 1992, progress = FALSE, save_path = NULL)
 #' ens_stress
 #' terra::plot(ens_stress[[2]], main = "% stress in 1992")
 #'
-build_stress_rasters <- function(percentdays = abalone::percentdays,
+build_stress <- function(percentdays = abalone::percentdays,
                                  esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
                                  yrst = 1990,
                                  yrend = 2100,

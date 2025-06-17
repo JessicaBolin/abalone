@@ -19,13 +19,13 @@
 #' @importFrom dplyr filter
 #'
 #' @examples
-#' ens_refugia <- build_refugia_rasters(percentdays = abalone::percentdays,
+#' ens_refugia <- build_refugia(percentdays = abalone::percentdays,
 #' esm = "ens", yrst = 1990, yrend = 2100, thresh = 50, progress = FALSE,
 #' save_path = NULL)
 #' ens_refugia
 #' terra::plot(ens_refugia[[98]], main = "Refugia in 2088")
 #'
-build_refugia_rasters <- function(percentdays = abalone::percentdays,
+build_refugia <- function(percentdays = abalone::percentdays,
                                   esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
                                   yrst = 1990,
                                   yrend = 2100,
