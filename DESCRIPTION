@@ -46,4 +46,5 @@ Collate:
     'persist_rast.R'
     'viz_persist.R'
     'deltarast.R'
+    'delta_viz.R'
 

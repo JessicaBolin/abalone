@@ -29,6 +29,7 @@ reference:
   - viz_stress_map
   - viz_refugia_map
   - viz_persist
+  - delta_viz
 - title: Time series plots of refugia
   desc: >
    Functions used to map annual time series of refugia

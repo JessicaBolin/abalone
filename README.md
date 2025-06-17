@@ -4,7 +4,8 @@
 
 <!-- badges: start -->
 
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) [![MacOS](https://github.com/JessicaBolin/abalone/actions/workflows/MacOS.yaml/badge.svg)](https://github.com/JessicaBolin/abalone/actions/workflows/MacOS.yaml) [![Windows](https://github.com/JessicaBolin/abalone/actions/workflows/Windows.yaml/badge.svg)](https://github.com/JessicaBolin/abalone/actions/workflows/Windows.yaml)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental) [![MacOS](https://github.com/JessicaBolin/abalone/actions/workflows/MacOS.yaml/badge.svg)](https://github.com/JessicaBolin/abalone/actions/workflows/MacOS.yaml) [![Windows](https://github.com/JessicaBolin/abalone/actions/workflows/Windows.yaml/badge.svg)](https://github.com/JessicaBolin/abalone/actions/workflows/Windows.yaml)\
+![Repo Size](https://img.shields.io/badge/Repo_Size-23.3_MB-yellow?style=flat%22)
 
 <!-- badges: end -->
 
