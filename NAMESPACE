@@ -3,6 +3,7 @@
 export(build_refugia_rasters)
 export(build_stress_rasters)
 export(cali_rast)
+export(deltarast)
 export(persist_rast)
 export(read_shp)
 export(viz_percentdays_ts)

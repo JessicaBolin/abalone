@@ -1,6 +1,6 @@
 Package: abalone
 Title: Climate refugia for red abalone
-Version: 0.0.2
+Version: 0.1.0
 Authors@R: c(
     person("Jessica A.", "Bolin", email = "jabbolin@ucdavis.edu", role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-9868-7511")),
@@ -45,4 +45,5 @@ Collate:
     'viz_refugia_ts.R'
     'persist_rast.R'
     'viz_persist.R'
+    'deltarast.R'
 

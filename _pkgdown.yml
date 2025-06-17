@@ -14,18 +14,27 @@ articles:
   - definitions
 
 reference:
-- title: Refugia workflow
+- title: Create rasters
   desc: >
-   Functions used to define and map refugia. Ideally, these should be run in descending order.
+   Functions used to define and create refugia rasters. These should be run in descending order.
   contents:
   - build_stress_rasters
-  - viz_stress_map
-  - viz_percentdays_ts
   - build_refugia_rasters
-  - viz_refugia_map
-  - viz_refugia_ts
   - persist_rast
+  - deltarast
+- title: Vizualise refugia
+  desc: >
+   Functions used to map refugia with `tmap`.
+  contents:
+  - viz_stress_map
+  - viz_refugia_map
   - viz_persist
+- title: Time series plots of refugia
+  desc: >
+   Functions used to map annual time series of refugia
+  contents:
+  - viz_percentdays_ts
+  - viz_refugia_ts
 - title: Misc. functions
   desc: >
    These are miscellaneous functions.

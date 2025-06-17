@@ -4,6 +4,12 @@ editor_options:
     wrap: 72
 ---
 
+# abalone 0.1.0
+
+- Moving to semantic versioning! 
+- Adding new functions
+- Patch fix: changing internal files sourced with `system.file()`
+
 # abalone 0.0.2
 
 -   Adding new functions
