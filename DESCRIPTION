@@ -44,4 +44,5 @@ Collate:
     'viz_refugia_map.R'
     'viz_refugia_ts.R'
     'persist_rast.R'
+    'viz_persist.R'
 

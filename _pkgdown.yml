@@ -25,6 +25,7 @@ reference:
   - viz_refugia_map
   - viz_refugia_ts
   - persist_rast
+  - viz_persist
 - title: Misc. functions
   desc: >
    These are miscellaneous functions.

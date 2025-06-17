@@ -28,8 +28,11 @@ persist_rast <- function(model = c("ens", "gfdltv", "hadtv", "ipsltv"),
 
   if (model == "^zoom") { model2 <- "zoom" } else { model2 <- model }
 
-  filey <- file.path(usethis::proj_path(), "inst", "extdata",
-            paste0(model2, "_refugia_", persist_thresh, ".tif"))
+  # filey <- file.path(usethis::proj_path(), "inst", "extdata",
+  #           paste0(model2, "_refugia_", persist_thresh, ".tif"))
+
+  filey <- system.file("extdata",  paste0(model2, "_refugia_", persist_thresh, ".tif"),
+              package = "abalone")
   biglist <- terra::rast(filey)
   sb_biglist <- biglist[[names(biglist) %in% yr_range]]
   sum_raster <- sum(sb_biglist)
@@ -48,10 +51,10 @@ persist_rast <- function(model = c("ens", "gfdltv", "hadtv", "ipsltv"),
     message("Raster saved to: ", normalizePath(save_pathh))
   } else if (interactive()) {
     # Developer convenience: save to inst/extdata
-    dev_path <- file.path(suppressMessages(usethis::proj_path(quiet = getOption("usethis.quiet", default = FALSE)),
+    dev_path <- file.path(usethis::proj_path(),
                                            "inst", "extdata",
                           paste0(model2, "_persistence_", persist_thresh,
-                                 "_", min(yr_range), "-", max(yr_range), ".tif")))
+                                 "_", min(yr_range), "-", max(yr_range), ".tif"))
     terra::writeRaster(persistence_raster, dev_path, overwrite = TRUE)
     message("Developer raster saved to: ", normalizePath(dev_path))
   }
@@ -70,4 +73,4 @@ persist_rast <- function(model = c("ens", "gfdltv", "hadtv", "ipsltv"),
 #   persist(model = i, yr_range <- 2070:2099, persist_thresh = 95, save_path = NULL)
 # }
 
-
+#persist_refugia <- persist_rast(model = "ens", yr_range = 2070:2099, persist_thresh = 50, save_path = NULL)
