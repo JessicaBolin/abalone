@@ -11,7 +11,8 @@ ts_viz_percentdays(
   input_file = abalone::percentdays,
   cons_thresh = 95,
   lib_thresh = 50,
-  extent_list = abalone::extent_list
+  extent_list = abalone::extent_list,
+  plot_title = "\% of year refugia conditions met"
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ ts_viz_percentdays(
 \item{lib_thresh}{Integer. Value representing the liberal temporal threshold to define refugia. Defaults to 50(\%)}
 
 \item{extent_list}{List of vectors. Defaults to \code{abalone::extent_list}}
+
+\item{plot_title}{Character string. Title displayed on the \code{ggplot}}
 }
 \value{
 Produces a \code{ggplot2::ggplot} object of an annual time series of refugia.

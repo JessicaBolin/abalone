@@ -9,7 +9,7 @@ build_refugia(
   esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
   yrst = 1990,
   yrend = 2100,
-  thresh = c(50, 95),
+  persist_thresh = c(50, 95),
   progress = TRUE,
   save_path = NULL
 )
@@ -23,7 +23,7 @@ build_refugia(
 
 \item{yrend}{Integer. End year. Defaults to 2100.}
 
-\item{thresh}{Integer. Temporal threshold (\%) used for defining annual refugia. Choose either 50 (liberal) or 95\% (conservative).}
+\item{persist_thresh}{Integer. Temporal threshold (\%) used for defining annual refugia. Choose either 50 (liberal) or 95\% (conservative).}
 
 \item{progress}{Logical. Show progress bar? Default is TRUE.}
 
@@ -39,7 +39,7 @@ The function also displays a progress bar.
 }
 \examples{
 ens_refugia <- build_refugia(percentdays = abalone::percentdays,
-esm = "ens", yrst = 1990, yrend = 2100, thresh = 50, progress = FALSE,
+esm = "ens", yrst = 1990, yrend = 2100, persist_thresh = 50, progress = FALSE,
 save_path = NULL)
 ens_refugia
 terra::plot(ens_refugia[[98]], main = "Refugia in 2088")

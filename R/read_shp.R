@@ -31,7 +31,8 @@
 #' shp
 #' plot(shp)
 
-read_shp <- function(shape = c("usa", "eez", "contshelf50", "contshelf200", "mpas")) {
+read_shp <- function(shape = c("usa", "eez", "contshelf50",
+                               "contshelf200", "mpas")) {
 
   # Ensure sf is available
   if (!requireNamespace("sf", quietly = TRUE)) {
@@ -44,11 +45,16 @@ read_shp <- function(shape = c("usa", "eez", "contshelf50", "contshelf200", "mpa
   # Choose the correct file based on input, switch() is like ifelse() but so much better
   shp_file <- switch(
     shape,
-    usa = base::system.file("extdata", "usa_contiguous.shp", package = "abalone"),
-    eez = base::system.file("extdata", "westcoast_eez.shp", package = "abalone"),
-    contshelf50 = base::system.file("extdata", "cont_shelf_50m.shp", package = "abalone"),
-    contshelf200 = base::system.file("extdata", "cont_shelf_200m.shp", package = "abalone"),
-    mpas = base::system.file("extdata", "california_mpas.shp", package = "abalone")
+    usa = base::system.file("extdata", "usa_contiguous.shp",
+                            package = "abalone"),
+    eez = base::system.file("extdata", "westcoast_eez.shp",
+                            package = "abalone"),
+    contshelf50 = base::system.file("extdata", "cont_shelf_50m.shp",
+                                    package = "abalone"),
+    contshelf200 = base::system.file("extdata", "cont_shelf_200m.shp",
+                                     package = "abalone"),
+    mpas = base::system.file("extdata", "california_mpas.shp",
+                             package = "abalone")
 
   )
 

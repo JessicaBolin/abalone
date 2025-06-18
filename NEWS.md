@@ -6,17 +6,21 @@ editor_options:
 
 # abalone 0.1.0
 
-- Moving to semantic versioning! 
-- Adding new functions
-- Patch fix: changing internal files sourced with `system.file()`
-- Standarized function names
-- Fixed licence note on R CMD Check
-- Fixed globalenv() `custom_palette` note on R CMD Check
-- Added `globals.R` to fix global variable note on R CMD Check
-- Added Getting started walkthrough 
-- Added pushover API and User taken (for dev)
+> 2025-06-17
+
+-   Moving to semantic versioning!
+-   Adding new functions
+-   Patch fix: changing internal files sourced with `system.file()`
+-   Standarized function names
+-   Fixed licence note on R CMD Check
+-   Fixed globalenv() `custom_palette` note on R CMD Check
+-   Added `globals.R` to fix global variable note on R CMD Check
+-   Added Getting started walkthrough
+-   Added pushover API and User taken (for dev)
 
 # abalone 0.0.2
+
+> 2025-06-16
 
 -   Adding new functions
     -   `build_stress_rasters`
@@ -29,10 +33,12 @@ editor_options:
 -   Added articles
     -   Ancillary Project Info
     -   Refugia Definitions
--   Hex logo addition!  
+-   Hex logo addition!\
 -   Updated citation with Zenodo draft DOI
 
 # abalone 0.0.1
+
+> 2025-06-15
 
 This is the first release of `{abalone}`!
 

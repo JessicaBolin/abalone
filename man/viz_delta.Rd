@@ -5,28 +5,28 @@
 \title{Map of delta refugia}
 \usage{
 viz_delta(
-  model = c("gfdltv", "hadtv", "ipsltv", "ens"),
+  esm = c("gfdltv", "hadtv", "ipsltv", "ens"),
   area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
   def = "def8",
-  histrange = 2020:2049,
-  projrange = 2070:2099,
-  extents = abalone::extent_list,
+  hist_range = 2020:2049,
+  proj_range = 2070:2099,
+  extent_list = abalone::extent_list,
   persist_thresh = c(50, 95),
   save_path = NULL
 )
 }
 \arguments{
-\item{model}{ESM model. Choose one from \code{c("gfdltv", "hadtv", "ipsltv", "ens")}}
+\item{esm}{ESM model. Choose one from \code{c("gfdltv", "hadtv", "ipsltv", "ens")}}
 
 \item{area}{Character. Name of the area; must match a key in \code{abalone::extent_list}.}
 
 \item{def}{Character. Refugia definition name (e.g., "def8") used in input file paths.}
 
-\item{histrange}{Vector of integers. Time period for historical period}
+\item{hist_range}{Vector of integers. Time period for historical period}
 
-\item{projrange}{Vector of integers. Time period for projection period}
+\item{proj_range}{Vector of integers. Time period for projection period}
 
-\item{extents}{List of vectors. Defaults to \code{abalone::extent_list}}
+\item{extent_list}{List of vectors. Defaults to \code{abalone::extent_list}}
 
 \item{persist_thresh}{Integer. Temporal threshold (\%) used for defining annual refugia. Choose either 50 (liberal) or 95\% (conservative).}
 
@@ -39,8 +39,8 @@ Produces a customized \code{tmap} object of a map of change in refugia
 This produces a nice \code{tmap} object that shows delta refugia (\%) for the time period of interest
 }
 \examples{
-viz_delta(model = "ens", area = "monterey_bay",
-def = "def8", histrange = 2020:2049, projrange = 2070:2099,
-extents = abalone::extent_list, persist_thresh = 50, save_path = NULL)
+viz_delta(esm = "ens", area = "monterey_bay", def = "def8",
+hist_range = 2020:2049, proj_range = 2070:2099,
+extent_list = abalone::extent_list, persist_thresh = 50, save_path = NULL)
 
 }

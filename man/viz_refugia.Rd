@@ -6,28 +6,28 @@
 \usage{
 viz_refugia(
   yr = 2100,
-  model = c("gfdltv", "hadtv", "ipsltv", "ens"),
+  esm = c("gfdltv", "hadtv", "ipsltv", "ens"),
   area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
   def = "def8",
-  extents = abalone::extent_list,
+  extent_list = abalone::extent_list,
   infile = abalone::percentdays,
-  thresh = c(50, 95)
+  persist_thresh = c(50, 95)
 )
 }
 \arguments{
 \item{yr}{Numeric vector. Year to plot. Default is 2100.}
 
-\item{model}{ESM model. Choose one from \code{c("gfdltv", "hadtv", "ipsltv", "ens")}}
+\item{esm}{ESM model. Choose one from \code{c("gfdltv", "hadtv", "ipsltv", "ens")}}
 
 \item{area}{Character. Name of the area; must match a key in \code{abalone::extent_list}.}
 
 \item{def}{Character. Refugia definition name (e.g., "def8") used in input file paths.}
 
-\item{extents}{List of vectors. Defaults to \code{abalone::extent_list}}
+\item{extent_list}{List of vectors. Defaults to \code{abalone::extent_list}}
 
 \item{infile}{Input dataframe detailing \% stress per year. Defaults to \code{abalone::percentdays}.}
 
-\item{thresh}{Integer. Temporal threshold (\%) used for defining annual refugia. Choose either 50 (liberal) or 95\% (conservative).}
+\item{persist_thresh}{Integer. Temporal threshold (\%) used for defining annual refugia. Choose either 50 (liberal) or 95\% (conservative).}
 }
 \value{
 Produces a customized \code{tmap} object of a map of refugia for the year of interest
@@ -36,8 +36,8 @@ Produces a customized \code{tmap} object of a map of refugia for the year of int
 This produces a nice \code{tmap} object that shows binary refugia for the year of interest
 }
 \examples{
-viz_refugia(yr = 2098, model = "gfdltv", area = "monterey_bay",
-def = "def8", extents = abalone::extent_list, infile = abalone::percentdays,
-thresh = 50)
+viz_refugia(yr = 2098, esm = "gfdltv", area = "monterey_bay",
+def = "def8", extent_list = abalone::extent_list, infile = abalone::percentdays,
+persist_thresh = 50)
 
 }

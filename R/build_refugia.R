@@ -8,7 +8,7 @@
 #' @param esm Character. ESM model to use. Choose from `ens`, `gfdltv`, `hadtv`, `ipsltv`.
 #' @param yrst Integer. Start year. Defaults to 1990.
 #' @param yrend Integer. End year. Defaults to 2100.
-#' @param thresh Integer. Temporal threshold (%) used for defining annual refugia. Choose either 50 (liberal) or 95% (conservative).
+#' @param persist_thresh Integer. Temporal threshold (%) used for defining annual refugia. Choose either 50 (liberal) or 95% (conservative).
 #' @param progress Logical. Show progress bar? Default is TRUE.
 #' @param save_path Character. Directory to save output to. Optional, set to NULL if not needed.
 
@@ -20,18 +20,18 @@
 #'
 #' @examples
 #' ens_refugia <- build_refugia(percentdays = abalone::percentdays,
-#' esm = "ens", yrst = 1990, yrend = 2100, thresh = 50, progress = FALSE,
+#' esm = "ens", yrst = 1990, yrend = 2100, persist_thresh = 50, progress = FALSE,
 #' save_path = NULL)
 #' ens_refugia
 #' terra::plot(ens_refugia[[98]], main = "Refugia in 2088")
 #'
 build_refugia <- function(percentdays = abalone::percentdays,
-                                  esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
-                                  yrst = 1990,
-                                  yrend = 2100,
-                                  thresh = c(50, 95),
-                                  progress = TRUE,
-                                  save_path = NULL) {
+                          esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
+                          yrst = 1990,
+                          yrend = 2100,
+                          persist_thresh = c(50, 95),
+                          progress = TRUE,
+                          save_path = NULL) {
 
   model2 <- ifelse(esm == "^zoom", "zoom", esm)
 
@@ -64,7 +64,7 @@ build_refugia <- function(percentdays = abalone::percentdays,
     names(yr_rast) <- as.character(i)
 
     # Identify refugia: where stress exceeds threshold
-    refugiaR <- yr_rast >= thresh
+    refugiaR <- yr_rast >= persist_thresh
     refugiaRRR <- terra::app(refugiaR, fun = function(x) ifelse(x, 1, 0))
     names(refugiaRRR) <- names(yr_rast)
 
@@ -79,13 +79,13 @@ build_refugia <- function(percentdays = abalone::percentdays,
   if (!is.null(save_path)) {
     dir_to_save <- dirname(save_path)
     if (!dir.exists(dir_to_save)) dir.create(dir_to_save, recursive = TRUE)
-    save_pathh <- paste0(save_path, "/", esm, "_refugia_", thresh, ".tif")
+    save_pathh <- paste0(save_path, "/", esm, "_refugia_", persist_thresh, ".tif")
     terra::writeRaster(model_rast, save_pathh, overwrite = TRUE)
     message("Raster saved to: ", normalizePath(save_pathh))
   } else if (interactive()) {
     # Developer convenience: save to inst/extdata
     dev_path <- file.path(usethis::proj_path(), "inst", "extdata",
-                          paste0(esm, "_refugia_", thresh, ".tif"))
+                          paste0(esm, "_refugia_", persist_thresh, ".tif"))
     terra::writeRaster(model_rast, dev_path, overwrite = TRUE)
     message("Developer raster saved to: ", normalizePath(dev_path))
   }
@@ -100,16 +100,8 @@ build_refugia <- function(percentdays = abalone::percentdays,
 #   esm = "ens",
 #   yrst = 1990,
 #   yrend = 2100,
-#   thresh = 50,
+#   persist_thresh = 50,
 #   progress = TRUE)
-# build_refugia_rasters(percentdays = abalone::percentdays, esm = "ens", yrst = 1990, yrend = 2100, thresh = 95, progress = TRUE)
-# build_refugia_rasters(percentdays = abalone::percentdays, esm = "gfdltv", yrst = 1990, yrend = 2100, thresh = 50, progress = TRUE)
-# build_refugia_rasters(percentdays = abalone::percentdays, esm = "gfdltv", yrst = 1990, yrend = 2100, thresh = 95, progress = TRUE)
-# build_refugia_rasters(percentdays = abalone::percentdays, esm = "hadtv", yrst = 1990, yrend = 2100, thresh = 50, progress = TRUE)
-# build_refugia_rasters(percentdays = abalone::percentdays, esm = "hadtv", yrst = 1990, yrend = 2100, thresh = 95, progress = TRUE)
-# build_refugia_rasters(percentdays = abalone::percentdays, esm = "ipsltv", yrst = 1990, yrend = 2100, thresh = 50, progress = TRUE)
-# build_refugia_rasters(percentdays = abalone::percentdays, esm = "ipsltv", yrst = 1990, yrend = 2100, thresh = 95, progress = TRUE)
-
 #
 # # For users
 # build_refugia_rasters(
@@ -117,6 +109,6 @@ build_refugia <- function(percentdays = abalone::percentdays,
 #   esm = "ens",
 #   yrst = 1990,
 #   yrend = 2100,
-#   thresh = 50,
+#   persist_thresh = 50,
 #   progress = TRUE,
 #   save_path = "/Users/admin/Desktop/untitled folder") #specify a folder

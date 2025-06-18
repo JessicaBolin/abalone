@@ -3,10 +3,10 @@
 #' This produces a nice `tmap` object that shows the % of year stressful conditions were experienced by abalone.
 #'
 #' @param yr Numeric vector. Year to plot. Default is 2100.
-#' @param model ESM model. Choose one from `c("gfdltv", "hadtv", "ipsltv", "ens")`
+#' @param esm ESM model. Choose one from `c("gfdltv", "hadtv", "ipsltv", "ens")`
 #' @param area Character. Name of the area; must match a key in `abalone::extent_list`.
 #' @param def Character. Refugia definition name (e.g., "def8") used in input file paths.
-#' @param extents List of vectors. Defaults to `abalone::extent_list`
+#' @param extent_list List of vectors. Defaults to `abalone::extent_list`
 #' @param infile Input dataframe detailing % stress per year. Defaults to `abalone::percentdays`.
 #'
 #' @return Produces a customized `tmap` object of a map of stress for the year of interest
@@ -15,15 +15,17 @@
 #' @importFrom magrittr %>%
 #'
 #' @examples
-#' viz_stress(yr = 2098, model = "gfdltv", area = "monterey_bay",
-#' def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)
+#' viz_stress(yr = 2098, esm = "gfdltv", area = "monterey_bay",
+#' def = "def8", extent_list = abalone::extent_list,
+#' infile = abalone::percentdays)
 #'
 
 viz_stress <- function(yr = 2100,
-                      model = c("gfdltv", "hadtv", "ipsltv", "ens"),
-                      area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
+                       esm = c("gfdltv", "hadtv", "ipsltv", "ens"),
+                      area = c("monterey_bay", "channel_islands",
+                               "fort_bragg", "san_francisco"),
                       def = "def8",
-                      extents = abalone::extent_list,
+                      extent_list = abalone::extent_list,
                       infile = abalone::percentdays
                       ) {
 
@@ -33,7 +35,7 @@ viz_stress <- function(yr = 2100,
 
   tmap::tmap_options(show.messages = FALSE, component.autoscale = FALSE)
 
-  model2 <- if (model == "^zoom") "zoom" else model
+  model2 <- if (esm == "^zoom") "zoom" else esm
 
   # Load shapefiles within each worker
   eez <- read_shp(shape = "eez")
@@ -49,8 +51,8 @@ viz_stress <- function(yr = 2100,
  # terra::plot(base_rast)
 
   # Crop
-  if (area %in% names(extents)) {
-    r <- terra::crop(base_rast, terra::ext(extents[[area]]))
+  if (area %in% names(extent_list)) {
+    r <- terra::crop(base_rast, terra::ext(extent_list[[area]]))
   }
 
     my_breaks <- seq(0, 100, by = 10)
@@ -93,15 +95,14 @@ viz_stress <- function(yr = 2100,
               bg.color = "white",
               legend.frame = FALSE)
 
-
   return(tt)
 }
 
 
 # #
 # yr = 2089
-# model = "gfdltv"
+# esm = "gfdltv"
 # area = "monterey_bay"
 # def = "def8"
-# extents = extent_list
+# extent_list = extent_list
 # infile = abalone::percentdays

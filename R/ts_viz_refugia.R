@@ -44,7 +44,8 @@
 
   # Get bounding box
   ex_vals <- extent_list[[area]]
-  ex <- terra::ext(ex_vals["xmin"], ex_vals["xmax"], ex_vals["ymin"], ex_vals["ymax"])
+  ex <- terra::ext(ex_vals["xmin"], ex_vals["xmax"],
+                   ex_vals["ymin"], ex_vals["ymax"])
 
   # Create base raster
   base_rast <- cali_rast()
@@ -65,13 +66,17 @@
 
     all_cells <- terra::cells(base_rast)
     cell_coords <- terra::xyFromCell(base_rast, all_cells)
-    cell_df <- data.frame(cellID = all_cells, x = cell_coords[,1], y = cell_coords[,2])
+    cell_df <- data.frame(cellID = all_cells,
+                          x = cell_coords[,1],
+                          y = cell_coords[,2])
     cell_df_cropped <- dplyr::filter(cell_df,
-                                     x >= ex[1] & x <= ex[2] & y >= ex[3] & y <= ex[4])
+                                     x >= ex[1] & x <= ex[2] &
+                                       y >= ex[3] & y <= ex[4])
 
     # GFDL
     gfdl_df <- input_file %>% dplyr::filter(model == "gfdltv", year == yr)
-    gfdl_df_cropped <- dplyr::filter(gfdl_df, cellID %in% cell_df_cropped$cellID)
+    gfdl_df_cropped <- dplyr::filter(gfdl_df,
+                                     cellID %in% cell_df_cropped$cellID)
     gfdl_rast <- base_rast %>% terra::crop(ex)
     gfdl_rast[terra::cells(gfdl_rast)] <- gfdl_df_cropped$percent
     gfdl_stack[[i]] <- gfdl_rast
@@ -79,7 +84,8 @@
 
     # IPSL
     ipsl_df <- input_file %>% dplyr::filter(model == "ipsltv", year == yr)
-    ipsl_df_cropped <- dplyr::filter(ipsl_df, cellID %in% cell_df_cropped$cellID)
+    ipsl_df_cropped <- dplyr::filter(ipsl_df,
+                                     cellID %in% cell_df_cropped$cellID)
     ipsl_rast <- base_rast %>% terra::crop(ex)
     ipsl_rast[terra::cells(ipsl_rast)] <- ipsl_df_cropped$percent
     ipsl_stack[[i]] <- ipsl_rast

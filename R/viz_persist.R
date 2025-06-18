@@ -3,10 +3,10 @@
 #' This produces a nice `tmap` object that shows persistence of refugia (%) for the time period of interest
 #'
 #' @param yr_range Numeric vector range of years. Defaults to 2070:2099
-#' @param model ESM model. Choose one from `c("gfdltv", "hadtv", "ipsltv", "ens")`
+#' @param esm ESM model. Choose one from `c("gfdltv", "hadtv", "ipsltv", "ens")`
 #' @param area Character. Name of the area; must match a key in `abalone::extent_list`.
 #' @param def Character. Refugia definition name (e.g., "def8") used in input file paths.
-#' @param extents List of vectors. Defaults to `abalone::extent_list`
+#' @param extent_list List of vectors. Defaults to `abalone::extent_list`
 #' @param breaks Sequence of integers. Defines the breaks used for the zlimits of the map. Defaults to `seq(0, 100, 20)`
 #' @param persist_thresh Integer. Temporal threshold (%) used for defining annual refugia. Choose either 50 (liberal) or 95% (conservative).
 #'
@@ -16,15 +16,15 @@
 #' @importFrom magrittr %>%
 #'
 #' @examples
-#' viz_persist(yr = 2070:2099, model = "ens", area = "monterey_bay",
-#' def = "def8", extents = abalone::extent_list, breaks = seq(0, 100, 20),
+#' viz_persist(yr = 2070:2099, esm = "ens", area = "monterey_bay",
+#' def = "def8", extent_list = abalone::extent_list, breaks = seq(0, 100, 20),
 #' persist_thresh = 50)
 #'
 viz_persist <- function(yr_range = 2070:2099,
-                        model = c("gfdltv", "hadtv", "ipsltv", "ens"),
+                        esm = c("gfdltv", "hadtv", "ipsltv", "ens"),
                         area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
                         def = "def8",
-                        extents = abalone::extent_list,
+                        extent_list = abalone::extent_list,
                         breaks = seq(0, 100, 20),
                         persist_thresh = c(50, 95)) {
   # Temporarily suppress tmap messages
@@ -32,7 +32,7 @@ viz_persist <- function(yr_range = 2070:2099,
   on.exit(options(old_opt), add = TRUE)
   tmap::tmap_options(show.messages = FALSE, component.autoscale = FALSE)
 
-  model2 <- if (model == "^zoom") "zoom" else model
+  model2 <- if (esm == "^zoom") "zoom" else esm
 
   # filey <- file.path(usethis::proj_path(), "inst", "extdata",
   #                    paste0(model2, "_persistence_", persist_thresh, "_",
@@ -54,8 +54,8 @@ viz_persist <- function(yr_range = 2070:2099,
   r <- terra::rast(filey)
 
   # Crop
-  if (area %in% names(extents)) {
-    r <- terra::crop(r, terra::ext(extents[[area]]))
+  if (area %in% names(extent_list)) {
+    r <- terra::crop(r, terra::ext(extent_list[[area]]))
   }
 
   # Map

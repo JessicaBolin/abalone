@@ -9,7 +9,8 @@
 #' terra::plot(emptyrast_100)
 #'
 #' @export
-cali_rast <- function(pth = system.file("extdata", "emptyrast_100.tif", package = "abalone")) {
+cali_rast <- function(pth = system.file("extdata", "emptyrast_100.tif",
+                                        package = "abalone")) {
   terra::rast(pth)
 }
 

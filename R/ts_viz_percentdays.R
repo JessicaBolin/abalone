@@ -13,6 +13,7 @@
 #' @param cons_thresh Integer. Value representing the conservative temporal threshold to define refugia. Defaults to 95(%)
 #' @param lib_thresh Integer. Value representing the liberal temporal threshold to define refugia. Defaults to 50(%)
 #' @param extent_list List of vectors. Defaults to `abalone::extent_list`
+#' @param plot_title Character string. Title displayed on the `ggplot`
 
 #' @return Produces a `ggplot2::ggplot` object of an annual time series of refugia.
 #' @export
@@ -26,13 +27,15 @@
 #' ts_viz_percentdays(area = "monterey_bay", yr_range = 1990:2100, def = "def8",
 #' input_file = abalone::percentdays, cons_thresh = 95, lib_thresh = 50)
 
-ts_viz_percentdays <- function(area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
-                           yr_range = 1990:2100,
-                           def = "def8",
-                           input_file = abalone::percentdays,
-                           cons_thresh = 95,
-                           lib_thresh = 50,
-                           extent_list = abalone::extent_list) {
+ts_viz_percentdays <- function(area = c("monterey_bay", "channel_islands",
+                                        "fort_bragg", "san_francisco"),
+                               yr_range = 1990:2100,
+                               def = "def8",
+                               input_file = abalone::percentdays,
+                               cons_thresh = 95,
+                               lib_thresh = 50,
+                               extent_list = abalone::extent_list,
+                               plot_title = "% of year refugia conditions met") {
 
   #utils::globalVariables(c("year", "model", "val"))
 
@@ -43,7 +46,8 @@ ts_viz_percentdays <- function(area = c("monterey_bay", "channel_islands", "fort
 
   # Get bounding box
   ex_vals <- extent_list[[area]]
-  ex <- terra::ext(ex_vals["xmin"], ex_vals["xmax"], ex_vals["ymin"], ex_vals["ymax"])
+  ex <- terra::ext(ex_vals["xmin"], ex_vals["xmax"],
+                   ex_vals["ymin"], ex_vals["ymax"])
 
   # Create base raster
   base_rast <- cali_rast()
@@ -64,13 +68,17 @@ ts_viz_percentdays <- function(area = c("monterey_bay", "channel_islands", "fort
 
     all_cells <- terra::cells(base_rast)
     cell_coords <- terra::xyFromCell(base_rast, all_cells)
-    cell_df <- data.frame(cellID = all_cells, x = cell_coords[,1], y = cell_coords[,2])
+    cell_df <- data.frame(cellID = all_cells,
+                          x = cell_coords[,1],
+                          y = cell_coords[,2])
     cell_df_cropped <- dplyr::filter(cell_df,
-                                     x >= ex[1] & x <= ex[2] & y >= ex[3] & y <= ex[4])
+                                     x >= ex[1] & x <= ex[2] &
+                                       y >= ex[3] & y <= ex[4])
 
     # GFDL
     gfdl_df <- input_file %>% dplyr::filter(model == "gfdltv", year == yr)
-    gfdl_df_cropped <- dplyr::filter(gfdl_df, cellID %in% cell_df_cropped$cellID)
+    gfdl_df_cropped <- dplyr::filter(gfdl_df,
+                                     cellID %in% cell_df_cropped$cellID)
     gfdl_rast <- base_rast %>% terra::crop(ex)
     gfdl_rast[terra::cells(gfdl_rast)] <- gfdl_df_cropped$percent
     gfdl_stack[[i]] <- gfdl_rast
@@ -78,7 +86,8 @@ ts_viz_percentdays <- function(area = c("monterey_bay", "channel_islands", "fort
 
     # IPSL
     ipsl_df <- input_file %>% dplyr::filter(model == "ipsltv", year == yr)
-    ipsl_df_cropped <- dplyr::filter(ipsl_df, cellID %in% cell_df_cropped$cellID)
+    ipsl_df_cropped <- dplyr::filter(ipsl_df,
+                                     cellID %in% cell_df_cropped$cellID)
     ipsl_rast <- base_rast %>% terra::crop(ex)
     ipsl_rast[terra::cells(ipsl_rast)] <- ipsl_df_cropped$percent
     ipsl_stack[[i]] <- ipsl_rast
@@ -86,7 +95,8 @@ ts_viz_percentdays <- function(area = c("monterey_bay", "channel_islands", "fort
 
     # IPSL
     had_df <- input_file %>% dplyr::filter(model == "hadtv", year == yr)
-    had_df_cropped <- dplyr::filter(had_df, cellID %in% cell_df_cropped$cellID)
+    had_df_cropped <- dplyr::filter(had_df,
+                                    cellID %in% cell_df_cropped$cellID)
     had_rast <- base_rast %>% terra::crop(ex)
     had_rast[terra::cells(had_rast)] <- had_df_cropped$percent
     hadtv_stack[[i]] <- had_rast
@@ -141,7 +151,7 @@ ts_viz_percentdays <- function(area = c("monterey_bay", "channel_islands", "fort
       "hadtv" = "#3F7CAC"
     ), name = "Model") +
     ggplot2::labs(
-      title = paste0(def, " | ", area, " | % of year refugia conditions met"),
+      title = plot_title,
       x = "Year", y = "% Days"
     ) +
     ggplot2::theme_minimal() +

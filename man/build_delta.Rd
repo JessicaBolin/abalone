@@ -5,24 +5,24 @@
 \title{Build rasters of persistent refugia}
 \usage{
 build_delta(
-  thresh = c(50, 95),
-  model = c("ens", "gfdltv", "hadtv", "ipsltv"),
+  persist_thresh = c(50, 95),
+  esm = c("ens", "gfdltv", "hadtv", "ipsltv"),
   def = "def8",
-  histrange = 2020:2049,
-  projrange = 2070:2099,
+  hist_range = 2020:2049,
+  proj_range = 2070:2099,
   save_path = NULL
 )
 }
 \arguments{
-\item{thresh}{Integer. Temporal threshold (\%) used for defining annual refugia. Choose either 50 (liberal) or 95\% (conservative).}
+\item{persist_thresh}{Integer. Temporal threshold (\%) used for defining annual refugia. Choose either 50 (liberal) or 95\% (conservative).}
 
-\item{model}{Character. ESM model to use. Choose from \code{ens}, \code{gfdltv}, \code{hadtv}, \code{ipsltv}.}
+\item{esm}{Character. ESM model to use. Choose from \code{ens}, \code{gfdltv}, \code{hadtv}, \code{ipsltv}.}
 
 \item{def}{Character. Refugia definition name (e.g., "def8") used in input file paths.}
 
-\item{histrange}{Vector of integers. Time period for historical period}
+\item{hist_range}{Vector of integers. Time period for historical period}
 
-\item{projrange}{Vector of integers. Time period for projection period}
+\item{proj_range}{Vector of integers. Time period for projection period}
 
 \item{save_path}{Character. Directory to save output to. Optional, set to NULL if not needed.}
 }
@@ -34,8 +34,8 @@ This function creates a single raster of persistent refugia for an ESM of intere
 over a user-specified time period.
 }
 \examples{
-deltar <- build_delta(thresh = 50, model = "ens", histrange = 2020:2049,
-projrange = 2070:2099, save_path = NULL)
+deltar <- build_delta(persist_thresh = 50, esm = "ens",
+hist_range = 2020:2049, proj_range = 2070:2099, save_path = NULL)
 deltar
 terra::plot(deltar)
 }

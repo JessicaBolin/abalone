@@ -6,10 +6,10 @@
 \usage{
 viz_persist(
   yr_range = 2070:2099,
-  model = c("gfdltv", "hadtv", "ipsltv", "ens"),
+  esm = c("gfdltv", "hadtv", "ipsltv", "ens"),
   area = c("monterey_bay", "channel_islands", "fort_bragg", "san_francisco"),
   def = "def8",
-  extents = abalone::extent_list,
+  extent_list = abalone::extent_list,
   breaks = seq(0, 100, 20),
   persist_thresh = c(50, 95)
 )
@@ -17,13 +17,13 @@ viz_persist(
 \arguments{
 \item{yr_range}{Numeric vector range of years. Defaults to 2070:2099}
 
-\item{model}{ESM model. Choose one from \code{c("gfdltv", "hadtv", "ipsltv", "ens")}}
+\item{esm}{ESM model. Choose one from \code{c("gfdltv", "hadtv", "ipsltv", "ens")}}
 
 \item{area}{Character. Name of the area; must match a key in \code{abalone::extent_list}.}
 
 \item{def}{Character. Refugia definition name (e.g., "def8") used in input file paths.}
 
-\item{extents}{List of vectors. Defaults to \code{abalone::extent_list}}
+\item{extent_list}{List of vectors. Defaults to \code{abalone::extent_list}}
 
 \item{breaks}{Sequence of integers. Defines the breaks used for the zlimits of the map. Defaults to \code{seq(0, 100, 20)}}
 
@@ -36,8 +36,8 @@ Produces a customized \code{tmap} object of a map of persistence
 This produces a nice \code{tmap} object that shows persistence of refugia (\%) for the time period of interest
 }
 \examples{
-viz_persist(yr = 2070:2099, model = "ens", area = "monterey_bay",
-def = "def8", extents = abalone::extent_list, breaks = seq(0, 100, 20),
+viz_persist(yr = 2070:2099, esm = "ens", area = "monterey_bay",
+def = "def8", extent_list = abalone::extent_list, breaks = seq(0, 100, 20),
 persist_thresh = 50)
 
 }
