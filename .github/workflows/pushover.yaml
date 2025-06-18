@@ -1,4 +1,9 @@
 # .github/workflows/pushover.yaml
+
+# Required setting up 'secret' in Github repo settings
+# Two secrets created: one called PUSHOVER_API, and other PUSHOVER_USER_KEY
+# Created an application on my Pushover account which gave me the API to use
+
 name: Pushover Notification
 
 on:
