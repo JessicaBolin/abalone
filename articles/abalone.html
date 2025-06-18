@@ -194,19 +194,17 @@
 <p>Now we can use <code>viz_stress</code> to create a <code>tmap</code> map of a particular location of interest. Let’s have a look at projected stress for Monterey Bay and Fort Bragg in 2098, ensembled across all ESMs.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">stress_ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/viz_stress.html">viz_stress</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>, def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span><span class="op">)</span></span>
-<span><span class="va">stress_fb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/viz_stress.html">viz_stress</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"fort_bragg"</span>, def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">stress_ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/viz_stress.html">viz_stress</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, </span>
+<span>                        esm <span class="op">=</span> <span class="st">"ens"</span>, </span>
+<span>                        area <span class="op">=</span> <span class="st">"monterey_bay"</span>, </span>
+<span>                        def <span class="op">=</span> <span class="st">"def8"</span>, </span>
+<span>                        extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>,</span>
+<span>                        infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">stress_ci</span>; <span class="va">stress_fb</span> </span></code></pre></div>
+<span><span class="va">stress_ci</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img src="abalone_files/figure-html/stress-figs,%20figures-side-1.png" style="width:49.0%"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure><p><img src="abalone_files/figure-html/stress-figs,%20figures-side-2.png" style="width:49.0%"></p>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -216,11 +214,15 @@
 <p>Now we can vizualise the % of each year that meet refugia conditions. Note this takes ~5 seconds for Jessie to run.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/ts_viz_percentdays.html">ts_viz_percentdays</a></span><span class="op">(</span>area <span class="op">=</span> <span class="st">"monterey_bay"</span>, yr_range <span class="op">=</span> <span class="fl">1990</span><span class="op">:</span><span class="fl">2100</span>, def <span class="op">=</span> <span class="st">"def8"</span>,</span>
-<span>input_file <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, cons_thresh <span class="op">=</span> <span class="fl">95</span>, lib_thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ts_viz_percentdays.html">ts_viz_percentdays</a></span><span class="op">(</span>area <span class="op">=</span> <span class="st">"monterey_bay"</span>, </span>
+<span>                   yr_range <span class="op">=</span> <span class="fl">1990</span><span class="op">:</span><span class="fl">2100</span>, </span>
+<span>                   def <span class="op">=</span> <span class="st">"def8"</span>,</span>
+<span>                   input_file <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, </span>
+<span>                   cons_thresh <span class="op">=</span> <span class="fl">95</span>, </span>
+<span>                   lib_thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img src="abalone_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -233,12 +235,16 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ens_refugia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_refugia.html">build_refugia</a></span><span class="op">(</span>percentdays <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>,</span>
-<span>                             esm <span class="op">=</span> <span class="st">"ens"</span>, yrst <span class="op">=</span> <span class="fl">1990</span>, yrend <span class="op">=</span> <span class="fl">2100</span>, thresh <span class="op">=</span> <span class="fl">50</span>, </span>
-<span>                             progress <span class="op">=</span> <span class="cn">FALSE</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span>                             esm <span class="op">=</span> <span class="st">"ens"</span>, </span>
+<span>                             yrst <span class="op">=</span> <span class="fl">1990</span>, </span>
+<span>                             yrend <span class="op">=</span> <span class="fl">2100</span>, </span>
+<span>                             persist_thresh <span class="op">=</span> <span class="fl">50</span>, </span>
+<span>                             progress <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>                             save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ens_refugia</span><span class="op">[[</span><span class="fl">98</span><span class="op">]</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">"Refugia in 2088"</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img src="abalone_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -248,21 +254,16 @@
 <p>And as before, we can vizulise our refugia rasters using <code>viz_refugia</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/viz_refugia.html">viz_refugia</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span>
-<span>            def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, </span>
-<span>            infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/viz_refugia.html">viz_refugia</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"san_francisco"</span>,</span>
-<span>            def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, </span>
-<span>            infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/viz_refugia.html">viz_refugia</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, </span>
+<span>            esm <span class="op">=</span> <span class="st">"ens"</span>, </span>
+<span>            area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span>
+<span>            def <span class="op">=</span> <span class="st">"def8"</span>, </span>
+<span>            extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, </span>
+<span>            infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, </span>
+<span>            persist_thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img src="abalone_files/figure-html/figures-side-1.png" style="width:49.0%"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure><p><img src="abalone_files/figure-html/figures-side-2.png" style="width:49.0%"></p>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -272,12 +273,15 @@
 <p>Here, we can see the proportion of each year refugia conditions were met, averaged across all cells within the area of interest. This is dependent on the temporal threshold used. Takes a few seconds to run.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/ts_viz_refugia.html">ts_viz_refugia</a></span><span class="op">(</span>area <span class="op">=</span> <span class="st">"monterey_bay"</span>, yr_range <span class="op">=</span> <span class="fl">1990</span><span class="op">:</span><span class="fl">2100</span>, def <span class="op">=</span> <span class="st">"def8"</span>,</span>
-<span>               input_file <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, persist_thresh <span class="op">=</span> <span class="fl">50</span>, </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ts_viz_refugia.html">ts_viz_refugia</a></span><span class="op">(</span>area <span class="op">=</span> <span class="st">"monterey_bay"</span>, </span>
+<span>               yr_range <span class="op">=</span> <span class="fl">1990</span><span class="op">:</span><span class="fl">2100</span>, </span>
+<span>               def <span class="op">=</span> <span class="st">"def8"</span>,</span>
+<span>               input_file <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, </span>
+<span>               persist_thresh <span class="op">=</span> <span class="fl">50</span>, </span>
 <span>               extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img src="abalone_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -289,12 +293,14 @@
 <p>Now that we have our binary refugia maps, we want to calculate the persistence of refugia over a predefined time period. Here, we can create a raster of persistence for 2070-2099, which tells us the % of time during this time period that each cell was classed as refugia, dependent on the temporal threshold used.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">persist_refugia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_persist.html">build_persist</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"ens"</span>, yr_range <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
-<span>                                 persist_thresh <span class="op">=</span> <span class="fl">50</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">persist_refugia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_persist.html">build_persist</a></span><span class="op">(</span>esm <span class="op">=</span> <span class="st">"ens"</span>, </span>
+<span>                                 yr_range <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
+<span>                                 persist_thresh <span class="op">=</span> <span class="fl">50</span>, </span>
+<span>                                 save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">persist_refugia</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img src="abalone_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -304,12 +310,16 @@
 <p>As before, we can use <code>tmap</code> to create a nicer plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/viz_persist.html">viz_persist</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span>
-<span>def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">20</span><span class="op">)</span>,</span>
-<span>persist_thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/viz_persist.html">viz_persist</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>, </span>
+<span>            esm <span class="op">=</span> <span class="st">"ens"</span>, </span>
+<span>            area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span>
+<span>            def <span class="op">=</span> <span class="st">"def8"</span>, </span>
+<span>            extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, </span>
+<span>            breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">20</span><span class="op">)</span>, </span>
+<span>            persist_thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img src="abalone_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -321,12 +331,15 @@
 <p>We’re interested in how refugia has changed over time. The function <code>build_delta</code> creates a raster in delta refugia (i.e., the change in refugia) between two time periods. Positive values = gain in refugia; negative values = loss of refugia.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">deltar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_delta.html">build_delta</a></span><span class="op">(</span>thresh <span class="op">=</span> <span class="fl">50</span>, model <span class="op">=</span> <span class="st">"ens"</span>, histrange <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>, </span>
-<span>                      projrange <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">deltar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_delta.html">build_delta</a></span><span class="op">(</span>persist_thresh <span class="op">=</span> <span class="fl">50</span>, </span>
+<span>                      esm <span class="op">=</span> <span class="st">"ens"</span>, </span>
+<span>                      hist_range <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>, </span>
+<span>                      proj_range <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>, </span>
+<span>                      save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">deltar</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img src="abalone_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-13-1.png" width="672"></p>
 </figure>
 </div>
 </div>
@@ -336,12 +349,17 @@
 <p>Let’s use <code>tmap</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/viz_delta.html">viz_delta</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span>
-<span>          def <span class="op">=</span> <span class="st">"def8"</span>, histrange <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>, projrange <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
-<span>          extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, persist_thresh <span class="op">=</span> <span class="fl">50</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/viz_delta.html">viz_delta</a></span><span class="op">(</span>esm <span class="op">=</span> <span class="st">"ens"</span>,</span>
+<span>          area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span>
+<span>          def <span class="op">=</span> <span class="st">"def8"</span>, </span>
+<span>          hist_range <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>, </span>
+<span>          proj_range <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
+<span>          extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, </span>
+<span>          persist_thresh <span class="op">=</span> <span class="fl">50</span>, </span>
+<span>          save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
 <div class="cell-output-display">
 <div>
-<figure><p><img src="abalone_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-14-1.png" width="672"></p>
 </figure>
 </div>
 </div>

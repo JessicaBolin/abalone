@@ -56,7 +56,7 @@ The function also displays a progress bar.</p>
 <span>  esm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ens"</span>, <span class="st">"gfdltv"</span>, <span class="st">"hadtv"</span>, <span class="st">"ipsltv"</span><span class="op">)</span>,</span>
 <span>  yrst <span class="op">=</span> <span class="fl">1990</span>,</span>
 <span>  yrend <span class="op">=</span> <span class="fl">2100</span>,</span>
-<span>  thresh <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">95</span><span class="op">)</span>,</span>
+<span>  persist_thresh <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">95</span><span class="op">)</span>,</span>
 <span>  progress <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  save_path <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -82,7 +82,7 @@ The function also displays a progress bar.</p>
 <dd><p>Integer. End year. Defaults to 2100.</p></dd>
 
 
-<dt id="arg-thresh">thresh<a class="anchor" aria-label="anchor" href="#arg-thresh"></a></dt>
+<dt id="arg-persist-thresh">persist_thresh<a class="anchor" aria-label="anchor" href="#arg-persist-thresh"></a></dt>
 <dd><p>Integer. Temporal threshold (%) used for defining annual refugia. Choose either 50 (liberal) or 95% (conservative).</p></dd>
 
 
@@ -102,7 +102,7 @@ The function also displays a progress bar.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ens_refugia</span> <span class="op">&lt;-</span> <span class="fu">build_refugia</span><span class="op">(</span>percentdays <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="percentdays.html">percentdays</a></span>,</span></span>
-<span class="r-in"><span>esm <span class="op">=</span> <span class="st">"ens"</span>, yrst <span class="op">=</span> <span class="fl">1990</span>, yrend <span class="op">=</span> <span class="fl">2100</span>, thresh <span class="op">=</span> <span class="fl">50</span>, progress <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>esm <span class="op">=</span> <span class="st">"ens"</span>, yrst <span class="op">=</span> <span class="fl">1990</span>, yrend <span class="op">=</span> <span class="fl">2100</span>, persist_thresh <span class="op">=</span> <span class="fl">50</span>, progress <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ens_refugia</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class       : SpatRaster </span>

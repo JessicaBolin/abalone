@@ -46,12 +46,12 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">viz_delta</span><span class="op">(</span></span>
-<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gfdltv"</span>, <span class="st">"hadtv"</span>, <span class="st">"ipsltv"</span>, <span class="st">"ens"</span><span class="op">)</span>,</span>
+<span>  esm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gfdltv"</span>, <span class="st">"hadtv"</span>, <span class="st">"ipsltv"</span>, <span class="st">"ens"</span><span class="op">)</span>,</span>
 <span>  area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"monterey_bay"</span>, <span class="st">"channel_islands"</span>, <span class="st">"fort_bragg"</span>, <span class="st">"san_francisco"</span><span class="op">)</span>,</span>
 <span>  def <span class="op">=</span> <span class="st">"def8"</span>,</span>
-<span>  histrange <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>,</span>
-<span>  projrange <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
-<span>  extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="extent_list.html">extent_list</a></span>,</span>
+<span>  hist_range <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>,</span>
+<span>  proj_range <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
+<span>  extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="extent_list.html">extent_list</a></span>,</span>
 <span>  persist_thresh <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">95</span><span class="op">)</span>,</span>
 <span>  save_path <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -61,7 +61,7 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-model">model<a class="anchor" aria-label="anchor" href="#arg-model"></a></dt>
+<dl><dt id="arg-esm">esm<a class="anchor" aria-label="anchor" href="#arg-esm"></a></dt>
 <dd><p>ESM model. Choose one from <code>c("gfdltv", "hadtv", "ipsltv", "ens")</code></p></dd>
 
 
@@ -73,15 +73,15 @@
 <dd><p>Character. Refugia definition name (e.g., "def8") used in input file paths.</p></dd>
 
 
-<dt id="arg-histrange">histrange<a class="anchor" aria-label="anchor" href="#arg-histrange"></a></dt>
+<dt id="arg-hist-range">hist_range<a class="anchor" aria-label="anchor" href="#arg-hist-range"></a></dt>
 <dd><p>Vector of integers. Time period for historical period</p></dd>
 
 
-<dt id="arg-projrange">projrange<a class="anchor" aria-label="anchor" href="#arg-projrange"></a></dt>
+<dt id="arg-proj-range">proj_range<a class="anchor" aria-label="anchor" href="#arg-proj-range"></a></dt>
 <dd><p>Vector of integers. Time period for projection period</p></dd>
 
 
-<dt id="arg-extents">extents<a class="anchor" aria-label="anchor" href="#arg-extents"></a></dt>
+<dt id="arg-extent-list">extent_list<a class="anchor" aria-label="anchor" href="#arg-extent-list"></a></dt>
 <dd><p>List of vectors. Defaults to <code><a href="extent_list.html">abalone::extent_list</a></code></p></dd>
 
 
@@ -100,9 +100,9 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">viz_delta</span><span class="op">(</span>model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span></span>
-<span class="r-in"><span>def <span class="op">=</span> <span class="st">"def8"</span>, histrange <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>, projrange <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span></span>
-<span class="r-in"><span>extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="extent_list.html">extent_list</a></span>, persist_thresh <span class="op">=</span> <span class="fl">50</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">viz_delta</span><span class="op">(</span>esm <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>, def <span class="op">=</span> <span class="st">"def8"</span>,</span></span>
+<span class="r-in"><span>hist_range <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>, proj_range <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span></span>
+<span class="r-in"><span>extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="extent_list.html">extent_list</a></span>, persist_thresh <span class="op">=</span> <span class="fl">50</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="viz_delta-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

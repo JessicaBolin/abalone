@@ -47,10 +47,10 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">viz_stress</span><span class="op">(</span></span>
 <span>  yr <span class="op">=</span> <span class="fl">2100</span>,</span>
-<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gfdltv"</span>, <span class="st">"hadtv"</span>, <span class="st">"ipsltv"</span>, <span class="st">"ens"</span><span class="op">)</span>,</span>
+<span>  esm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gfdltv"</span>, <span class="st">"hadtv"</span>, <span class="st">"ipsltv"</span>, <span class="st">"ens"</span><span class="op">)</span>,</span>
 <span>  area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"monterey_bay"</span>, <span class="st">"channel_islands"</span>, <span class="st">"fort_bragg"</span>, <span class="st">"san_francisco"</span><span class="op">)</span>,</span>
 <span>  def <span class="op">=</span> <span class="st">"def8"</span>,</span>
-<span>  extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="extent_list.html">extent_list</a></span>,</span>
+<span>  extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="extent_list.html">extent_list</a></span>,</span>
 <span>  infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="percentdays.html">percentdays</a></span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -63,7 +63,7 @@
 <dd><p>Numeric vector. Year to plot. Default is 2100.</p></dd>
 
 
-<dt id="arg-model">model<a class="anchor" aria-label="anchor" href="#arg-model"></a></dt>
+<dt id="arg-esm">esm<a class="anchor" aria-label="anchor" href="#arg-esm"></a></dt>
 <dd><p>ESM model. Choose one from <code>c("gfdltv", "hadtv", "ipsltv", "ens")</code></p></dd>
 
 
@@ -75,7 +75,7 @@
 <dd><p>Character. Refugia definition name (e.g., "def8") used in input file paths.</p></dd>
 
 
-<dt id="arg-extents">extents<a class="anchor" aria-label="anchor" href="#arg-extents"></a></dt>
+<dt id="arg-extent-list">extent_list<a class="anchor" aria-label="anchor" href="#arg-extent-list"></a></dt>
 <dd><p>List of vectors. Defaults to <code><a href="extent_list.html">abalone::extent_list</a></code></p></dd>
 
 
@@ -90,8 +90,9 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">viz_stress</span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, model <span class="op">=</span> <span class="st">"gfdltv"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span></span>
-<span class="r-in"><span>def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="extent_list.html">extent_list</a></span>, infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="percentdays.html">percentdays</a></span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">viz_stress</span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, esm <span class="op">=</span> <span class="st">"gfdltv"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span></span>
+<span class="r-in"><span>def <span class="op">=</span> <span class="st">"def8"</span>, extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="extent_list.html">extent_list</a></span>,</span></span>
+<span class="r-in"><span>infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="percentdays.html">percentdays</a></span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="viz_stress-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

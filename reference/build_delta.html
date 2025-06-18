@@ -49,11 +49,11 @@ over a user-specified time period.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">build_delta</span><span class="op">(</span></span>
-<span>  thresh <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">95</span><span class="op">)</span>,</span>
-<span>  model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ens"</span>, <span class="st">"gfdltv"</span>, <span class="st">"hadtv"</span>, <span class="st">"ipsltv"</span><span class="op">)</span>,</span>
+<span>  persist_thresh <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">95</span><span class="op">)</span>,</span>
+<span>  esm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ens"</span>, <span class="st">"gfdltv"</span>, <span class="st">"hadtv"</span>, <span class="st">"ipsltv"</span><span class="op">)</span>,</span>
 <span>  def <span class="op">=</span> <span class="st">"def8"</span>,</span>
-<span>  histrange <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>,</span>
-<span>  projrange <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
+<span>  hist_range <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>,</span>
+<span>  proj_range <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
 <span>  save_path <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -62,11 +62,11 @@ over a user-specified time period.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-thresh">thresh<a class="anchor" aria-label="anchor" href="#arg-thresh"></a></dt>
+<dl><dt id="arg-persist-thresh">persist_thresh<a class="anchor" aria-label="anchor" href="#arg-persist-thresh"></a></dt>
 <dd><p>Integer. Temporal threshold (%) used for defining annual refugia. Choose either 50 (liberal) or 95% (conservative).</p></dd>
 
 
-<dt id="arg-model">model<a class="anchor" aria-label="anchor" href="#arg-model"></a></dt>
+<dt id="arg-esm">esm<a class="anchor" aria-label="anchor" href="#arg-esm"></a></dt>
 <dd><p>Character. ESM model to use. Choose from <code>ens</code>, <code>gfdltv</code>, <code>hadtv</code>, <code>ipsltv</code>.</p></dd>
 
 
@@ -74,11 +74,11 @@ over a user-specified time period.</p>
 <dd><p>Character. Refugia definition name (e.g., "def8") used in input file paths.</p></dd>
 
 
-<dt id="arg-histrange">histrange<a class="anchor" aria-label="anchor" href="#arg-histrange"></a></dt>
+<dt id="arg-hist-range">hist_range<a class="anchor" aria-label="anchor" href="#arg-hist-range"></a></dt>
 <dd><p>Vector of integers. Time period for historical period</p></dd>
 
 
-<dt id="arg-projrange">projrange<a class="anchor" aria-label="anchor" href="#arg-projrange"></a></dt>
+<dt id="arg-proj-range">proj_range<a class="anchor" aria-label="anchor" href="#arg-proj-range"></a></dt>
 <dd><p>Vector of integers. Time period for projection period</p></dd>
 
 
@@ -93,8 +93,8 @@ over a user-specified time period.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">deltar</span> <span class="op">&lt;-</span> <span class="fu">build_delta</span><span class="op">(</span>thresh <span class="op">=</span> <span class="fl">50</span>, model <span class="op">=</span> <span class="st">"ens"</span>, histrange <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>,</span></span>
-<span class="r-in"><span>projrange <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">deltar</span> <span class="op">&lt;-</span> <span class="fu">build_delta</span><span class="op">(</span>persist_thresh <span class="op">=</span> <span class="fl">50</span>, esm <span class="op">=</span> <span class="st">"ens"</span>,</span></span>
+<span class="r-in"><span>hist_range <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>, proj_range <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">deltar</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> class       : SpatRaster </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> size        : 286, 286, 1  (nrow, ncol, nlyr)</span>
