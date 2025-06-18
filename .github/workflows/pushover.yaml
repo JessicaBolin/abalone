@@ -1,23 +1,24 @@
+# .github/workflows/pushover.yaml
+name: Pushover Notification
+
+on:
+  workflow_run:
+    workflows: ["pkgdown.yaml"]
+    types:
+      - completed
+
 jobs:
-  build:
+  notify:
     runs-on: ubuntu-latest
     steps:
-      # Your regular steps...
+      - name: Send Pushover Notification
+        uses: umahmood/pushover-actions@main
+        env:
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_API }}
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER_KEY }}
+        with:
+          title: 'GitHub Pages Deployment'
+          status: ${{ github.event.workflow_run.conclusion }}
+          message: |
+            The 'pkgdown.yaml' workflow just finished with status: ${{ github.event.workflow_run.conclusion }}
 
-      - name: Notify success via Pushover
-        if: success()
-        run: |
-          curl -s \
-            -F "token=${{ secrets.PUSHOVER_API }}" \
-            -F "user=${{ secrets.PUSHOVER_USER_KEY }}" \
-            -F "message=✅ abalone: Build succeeded!" \
-            https://api.pushover.net/1/messages.json
-
-      - name: Notify failure via Pushover
-        if: failure()
-        run: |
-          curl -s \
-            -F "token=${{ secrets.PUSHOVER_API_TOKEN }}" \
-            -F "user=${{ secrets.PUSHOVER_USER_KEY }}" \
-            -F "message=❌ abalone: Build failed!" \
-            https://api.pushover.net/1/messages.json
