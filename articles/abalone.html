@@ -15,8 +15,11 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="abalone_files/libs/quarto-html/popper.min.js"></script><script src="abalone_files/libs/quarto-html/tippy.umd.min.js"></script><link href="abalone_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="abalone_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="abalone">
+<meta property="og:image" content="https://jessicabolin.github.io/abalone/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -57,37 +60,100 @@
 
 
   </div>
-</nav><div class="container template-article">
-
-
-
-
+</nav><div class="container template-quarto">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>abalone</h1>
-            
-      
-      <small class="dont-index">Source: <a href="https://github.com/JessicaBolin/abalone/blob/main/vignettes/abalone.Rmd" class="external-link"><code>vignettes/abalone.Rmd</code></a></small>
-      <div class="d-none name"><code>abalone.Rmd</code></div>
+
+
+
+
+      <small class="dont-index">Source: <a href="https://github.com/JessicaBolin/abalone/blob/main/vignettes/abalone.qmd" class="external-link"><code>vignettes/abalone.qmd</code></a></small>
+      <div class="d-none name"><code></code></div>
     </div>
 
-    
-    
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+
+
+
+
+
+    <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jessicabolin.github.io/abalone/">abalone</a></span><span class="op">)</span></span></code></pre></div>
-<p>Here I will document examples of how to run refugia functions. More
-to come.</p>
-<div class="section level2">
-<h2 id="create-raster-of-stress">Create raster of % stress<a class="anchor" aria-label="anchor" href="#create-raster-of-stress"></a>
+</div>
+<p>Here I will document examples of how to run refugia functions. More to come.</p>
+<section class="section level2"><h2 id="data-required">Data required<a class="anchor" aria-label="anchor" href="#data-required"></a>
 </h2>
-<p>First, we use <code>build_stress</code> to create rasters of annual
-stress. This is defined as the percentage of each year that abalone
-experience stress, based on the refugia definition chosen.</p>
-<p>This produces a <code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast()</a></code> object of stress for each
-grid cell for the state of California. The user can specify to save the
-output to a local directory via the <code>save_path</code> argument -
-leaving it as NULL will not save the file.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<section class="level2"><h3 id="refugia-dataframe">Refugia dataframe<a class="anchor" aria-label="anchor" href="#refugia-dataframe"></a>
+</h3>
+<p>All examples require a dataframe of annual refugia. The examples herein use a precomputed refugia dataset contained internally within the package, which you can access via <code><a href="../reference/percentdays.html">abalone::percentdays</a></code>. This represents a dataframe of refugia for each year across the three ESMs, for definition 8: temperature growth.</p>
+<ul>
+<li>
+<code>cellID</code> = cell number corresponding to the cell index position from <code><a href="../reference/cali_rast.html">abalone::cali_rast</a></code> which is a raster of California coastal cells taken from UCSC-ROMS 3 km, but only containing grid cells above 100m depth.</li>
+<li>
+<code>refugiadays</code> = Number of days where refugia conditions are met for the corresponding cellID-year-model combination</li>
+<li>
+<code>percent</code> = As above, but for percent of year</li>
+<li>
+<code>year</code> = Year of interest</li>
+<li>
+<code>model</code> = Earth System Model</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt;        cellID refugiadays   percent year model</span></span>
+<span><span class="co">#&gt; 697519  81489          65 17.808219 2100 hadtv</span></span>
+<span><span class="co">#&gt; 697520  81490         182 49.863014 2100 hadtv</span></span>
+<span><span class="co">#&gt; 697521  81491         268 73.424658 2100 hadtv</span></span>
+<span><span class="co">#&gt; 697522  81775          33  9.041096 2100 hadtv</span></span>
+<span><span class="co">#&gt; 697523  81776         113 30.958904 2100 hadtv</span></span>
+<span><span class="co">#&gt; 697524  81777         225 61.643836 2100 hadtv</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; 'data.frame':    697524 obs. of  5 variables:</span></span>
+<span><span class="co">#&gt;  $ cellID     : num  49 50 51 52 53 54 335 336 337 338 ...</span></span>
+<span><span class="co">#&gt;  $ refugiadays: num  0 0 0 0 0 0 0 0 0 0 ...</span></span>
+<span><span class="co">#&gt;  $ percent    : num  0 0 0 0 0 0 0 0 0 0 ...</span></span>
+<span><span class="co">#&gt;  $ year       : num  1990 1990 1990 1990 1990 1990 1990 1990 1990 1990 ...</span></span>
+<span><span class="co">#&gt;  $ model      : chr  "ens" "ens" "ens" "ens" ...</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span><span class="op">$</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ens"    "gfdltv" "ipsltv" "hadtv"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1990 2100</span></span></code></pre></div>
+</div>
+</section><section class="level2"><h3 id="case-study-latlon-extents">Case study lat/lon extents<a class="anchor" aria-label="anchor" href="#case-study-latlon-extents"></a>
+</h3>
+<p>We provide extents of our case study regions via <code>extent_list</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">extent_list</span></span>
+<span><span class="co">#&gt; $monterey_bay</span></span>
+<span><span class="co">#&gt;   xmin   xmax   ymin   ymax </span></span>
+<span><span class="co">#&gt; -122.3 -121.5   36.4   37.1 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $fort_bragg</span></span>
+<span><span class="co">#&gt;   xmin   xmax   ymin   ymax </span></span>
+<span><span class="co">#&gt; -124.3 -123.5   39.1   39.7 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $channel_islands</span></span>
+<span><span class="co">#&gt;    xmin    xmax    ymin    ymax </span></span>
+<span><span class="co">#&gt; -120.50 -119.40   33.80   34.15 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $san_francisco</span></span>
+<span><span class="co">#&gt;   xmin   xmax   ymin   ymax </span></span>
+<span><span class="co">#&gt; -123.5 -121.9   37.3   38.5</span></span></code></pre></div>
+</div>
+</section><section class="level2"><h3 id="shapefiles">Shapefiles<a class="anchor" aria-label="anchor" href="#shapefiles"></a>
+</h3>
+<p>We provide five shapefiles to aid in mapping via the <code>read_shp</code> function. Datasets and further info can be found in the helpfile</p>
+</section></section><section class="section level2"><h2 id="stress">1. Stress<a class="anchor" aria-label="anchor" href="#stress"></a>
+</h2>
+<section class="level2"><h3 id="build-rasters-of-annual-stress">Build rasters of annual ‘stress’<a class="anchor" aria-label="anchor" href="#build-rasters-of-annual-stress"></a>
+</h3>
+<p>First, we use <code>build_stress</code> to create rasters of annual stress. This is defined as the percentage of each year that abalone experience stress, based on the refugia definition chosen.</p>
+<p>This produces a <code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast()</a></code> object of stress for each grid cell for the state of California. The user can specify to save the output to a local directory via the <code>save_path</code> argument - leaving it as NULL will not save the file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ens_stress</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_stress.html">build_stress</a></span><span class="op">(</span>percentdays <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, </span>
 <span>                           esm <span class="op">=</span> <span class="st">"ens"</span>, </span>
 <span>                           yrst <span class="op">=</span> <span class="fl">1990</span>, </span>
@@ -109,17 +175,263 @@ leaving it as NULL will not save the file.</p>
 <span><span class="co">#&gt; names       :     1990,     1991,     1992,     1993,    1994,     1995, ... </span></span>
 <span><span class="co">#&gt; min values  :  0.00000,  0.00000,  0.00000,  0.00000,  0.0000,  0.00000, ... </span></span>
 <span><span class="co">#&gt; max values  : 45.20548, 48.49315, 55.19126, 52.05479, 46.0274, 59.72603, ...</span></span></code></pre></div>
-<p>Above, the resolution is 3km, extent is for California, and the file
-has 111 layers, corresponding to 111 years between the user-specified
-year range in the function call.</p>
-<p>Now, we can vizualise what this looks like.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+</div>
+<p>Above, the resolution is 3km, extent is for California, and the file has 111 layers, corresponding to 111 years between the user-specified year range in the function call.</p>
+<p>Now, we can vizualise what one layer of the raster looks like.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ens_stress</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">"% Stress in 1990"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="abalone_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
+</figure>
 </div>
-  </main>
 </div>
-
+</div>
+</section><section class="level2"><h3 id="vizualise-annual-stress-using-tmap">Vizualise annual stress using <code>tmap</code>
+<a class="anchor" aria-label="anchor" href="#vizualise-annual-stress-using-tmap"></a>
+</h3>
+<p>Now we can use <code>viz_stress</code> to create a <code>tmap</code> map of a particular location of interest. Let’s have a look at projected stress for Monterey Bay and Fort Bragg in 2098, ensembled across all ESMs.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">stress_ci</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/viz_stress.html">viz_stress</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>, def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span><span class="op">)</span></span>
+<span><span class="va">stress_fb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/viz_stress.html">viz_stress</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"fort_bragg"</span>, def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">stress_ci</span>; <span class="va">stress_fb</span> </span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/stress-figs,%20figures-side-1.png" style="width:49.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/stress-figs,%20figures-side-2.png" style="width:49.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section class="level2"><h3 id="plot-annual-time-series-of-refugia">Plot annual time series of refugia<a class="anchor" aria-label="anchor" href="#plot-annual-time-series-of-refugia"></a>
+</h3>
+<p>Now we can vizualise the % of each year that meet refugia conditions. Note this takes ~5 seconds for Jessie to run.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ts_viz_percentdays.html">ts_viz_percentdays</a></span><span class="op">(</span>area <span class="op">=</span> <span class="st">"monterey_bay"</span>, yr_range <span class="op">=</span> <span class="fl">1990</span><span class="op">:</span><span class="fl">2100</span>, def <span class="op">=</span> <span class="st">"def8"</span>,</span>
+<span>input_file <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, cons_thresh <span class="op">=</span> <span class="fl">95</span>, lib_thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-6-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section class="section level2"><h2 id="refugia">2. Refugia<a class="anchor" aria-label="anchor" href="#refugia"></a>
+</h2>
+<section class="level2"><h3 id="build-rasters-of-binary-refugia">Build rasters of binary refugia<a class="anchor" aria-label="anchor" href="#build-rasters-of-binary-refugia"></a>
+</h3>
+<p>Now that we have rasters of stress, we can convert these into binary rasters of refugia using the <code>build_refugia</code> function. We have a new argument for <code>thresh</code>, representing the temporal threshold we use to define refugia. The two options we provide are either 50 or 95%, representing liberal and conservative thresholds for defining refugia for the year of interest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ens_refugia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_refugia.html">build_refugia</a></span><span class="op">(</span>percentdays <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>,</span>
+<span>                             esm <span class="op">=</span> <span class="st">"ens"</span>, yrst <span class="op">=</span> <span class="fl">1990</span>, yrend <span class="op">=</span> <span class="fl">2100</span>, thresh <span class="op">=</span> <span class="fl">50</span>, </span>
+<span>                             progress <span class="op">=</span> <span class="cn">FALSE</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ens_refugia</span><span class="op">[[</span><span class="fl">98</span><span class="op">]</span><span class="op">]</span>, main <span class="op">=</span> <span class="st">"Refugia in 2088"</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section class="level2"><h3 id="vizualise-binary-refugia">Vizualise binary refugia<a class="anchor" aria-label="anchor" href="#vizualise-binary-refugia"></a>
+</h3>
+<p>And as before, we can vizulise our refugia rasters using <code>viz_refugia</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/viz_refugia.html">viz_refugia</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span>
+<span>            def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, </span>
+<span>            infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/viz_refugia.html">viz_refugia</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2098</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"san_francisco"</span>,</span>
+<span>            def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, </span>
+<span>            infile <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/figures-side-1.png" style="width:49.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/figures-side-2.png" style="width:49.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section class="level2"><h3 id="plot-annual-time-series-of-refugia-temporal-threshold">Plot annual time series of refugia (temporal threshold)<a class="anchor" aria-label="anchor" href="#plot-annual-time-series-of-refugia-temporal-threshold"></a>
+</h3>
+<p>Here, we can see the proportion of each year refugia conditions were met, averaged across all cells within the area of interest. This is dependent on the temporal threshold used. Takes a few seconds to run.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/ts_viz_refugia.html">ts_viz_refugia</a></span><span class="op">(</span>area <span class="op">=</span> <span class="st">"monterey_bay"</span>, yr_range <span class="op">=</span> <span class="fl">1990</span><span class="op">:</span><span class="fl">2100</span>, def <span class="op">=</span> <span class="st">"def8"</span>,</span>
+<span>               input_file <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/percentdays.html">percentdays</a></span>, persist_thresh <span class="op">=</span> <span class="fl">50</span>, </span>
+<span>               extent_list <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-8-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section class="section level2"><h2 id="persistence">3. Persistence<a class="anchor" aria-label="anchor" href="#persistence"></a>
+</h2>
+<section class="level2"><h3 id="build-rasters-of-persistence-of-refugia">Build rasters of persistence of refugia<a class="anchor" aria-label="anchor" href="#build-rasters-of-persistence-of-refugia"></a>
+</h3>
+<p>Now that we have our binary refugia maps, we want to calculate the persistence of refugia over a predefined time period. Here, we can create a raster of persistence for 2070-2099, which tells us the % of time during this time period that each cell was classed as refugia, dependent on the temporal threshold used.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">persist_refugia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_persist.html">build_persist</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"ens"</span>, yr_range <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
+<span>                                 persist_thresh <span class="op">=</span> <span class="fl">50</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">persist_refugia</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section class="level2"><h3 id="vizualise-persistence">Vizualise persistence<a class="anchor" aria-label="anchor" href="#vizualise-persistence"></a>
+</h3>
+<p>As before, we can use <code>tmap</code> to create a nicer plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/viz_persist.html">viz_persist</a></span><span class="op">(</span>yr <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>, model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span>
+<span>def <span class="op">=</span> <span class="st">"def8"</span>, extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">20</span><span class="op">)</span>,</span>
+<span>persist_thresh <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section class="section level2"><h2 id="delta">4. Delta<a class="anchor" aria-label="anchor" href="#delta"></a>
+</h2>
+<section class="level2"><h3 id="build-rasters-of-delta-refugia">Build rasters of delta refugia<a class="anchor" aria-label="anchor" href="#build-rasters-of-delta-refugia"></a>
+</h3>
+<p>We’re interested in how refugia has changed over time. The function <code>build_delta</code> creates a raster in delta refugia (i.e., the change in refugia) between two time periods. Positive values = gain in refugia; negative values = loss of refugia.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">deltar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_delta.html">build_delta</a></span><span class="op">(</span>thresh <span class="op">=</span> <span class="fl">50</span>, model <span class="op">=</span> <span class="st">"ens"</span>, histrange <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>, </span>
+<span>                      projrange <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">deltar</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section class="level2"><h3 id="vizualise-delta">Vizualise delta<a class="anchor" aria-label="anchor" href="#vizualise-delta"></a>
+</h3>
+<p>Let’s use <code>tmap</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/viz_delta.html">viz_delta</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"ens"</span>, area <span class="op">=</span> <span class="st">"monterey_bay"</span>,</span>
+<span>          def <span class="op">=</span> <span class="st">"def8"</span>, histrange <span class="op">=</span> <span class="fl">2020</span><span class="op">:</span><span class="fl">2049</span>, projrange <span class="op">=</span> <span class="fl">2070</span><span class="op">:</span><span class="fl">2099</span>,</span>
+<span>          extents <span class="op">=</span> <span class="fu">abalone</span><span class="fu">::</span><span class="va"><a href="../reference/extent_list.html">extent_list</a></span>, persist_thresh <span class="op">=</span> <span class="fl">50</span>, save_path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure><p><img src="abalone_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config);
+    }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
+</div>
 
 
     <footer><div class="pkgdown-footer-left">
