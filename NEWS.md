@@ -13,6 +13,7 @@ editor_options:
 - Fixed licence note on R CMD Check
 - Fixed globalenv() `custom_palette` note on R CMD Check
 - Added `globals.R` to fix global variable note on R CMD Check
+- Added Getting started walkthrough 
 
 # abalone 0.0.2
 

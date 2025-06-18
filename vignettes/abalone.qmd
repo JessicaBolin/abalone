@@ -1,0 +1,184 @@
+---
+title: "abalone"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{abalone}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(abalone)
+```
+
+Here I will document examples of how to run refugia functions. More to come.
+
+# Data required 
+
+## Refugia dataframe
+
+All examples require a dataframe of annual refugia. The examples herein use a precomputed refugia dataset contained internally within the package, which you can access via `abalone::percentdays`. This represents a dataframe of refugia for each year across the three ESMs, for definition 8: temperature growth.
+
+-   `cellID` = cell number corresponding to the cell index position from `abalone::cali_rast` which is a raster of California coastal cells taken from UCSC-ROMS 3 km, but only containing grid cells above 100m depth.
+-   `refugiadays` = Number of days where refugia conditions are met for the corresponding cellID-year-model combination
+-   `percent` = As above, but for percent of year
+-   `year` = Year of interest
+-   `model` = Earth System Model
+
+```{r}
+tail(abalone::percentdays)
+str(abalone::percentdays)
+unique(abalone::percentdays$model)
+range(abalone::percentdays$year)
+```
+
+## Case study lat/lon extents
+
+We  provide extents of our case study regions via `extent_list`
+
+```{r}
+extent_list
+```
+
+## Shapefiles
+
+We provide five shapefiles to aid in mapping via the `read_shp` function. Datasets and further info can be found in the helpfile 
+
+
+# 1. Stress
+
+## Build rasters of annual 'stress'
+
+First, we use `build_stress` to create rasters of annual stress. This is defined as the percentage of each year that abalone experience stress, based on the refugia definition chosen.
+
+This produces a `terra::rast()` object of stress for each grid cell for the state of California. The user can specify to save the output to a local directory via the `save_path` argument - leaving it as NULL will not save the file.
+
+```{r}
+ens_stress <- build_stress(percentdays = abalone::percentdays, 
+                           esm = "ens", 
+                           yrst = 1990, 
+                           yrend = 2100,
+                           progress = FALSE, 
+                           save_path = NULL)
+
+ens_stress
+```
+
+Above, the resolution is 3km, extent is for California, and the file has 111 layers, corresponding to 111 years between the user-specified year range in the function call.
+
+Now, we can vizualise what one layer of the raster looks like.
+
+```{r}
+terra::plot(ens_stress[[1]], main = "% Stress in 1990")
+```
+
+## Vizualise annual stress using `tmap`
+
+Now we can use `viz_stress` to create a `tmap` map of a particular location of interest. Let's have a look at projected stress for Monterey Bay and Fort Bragg in 2098, ensembled across all ESMs.
+
+```{r stress-figs, figures-side, fig.show="hold", out.width="49%"}
+stress_ci <- viz_stress(yr = 2098, model = "ens", area = "monterey_bay", def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)
+stress_fb <- viz_stress(yr = 2098, model = "ens", area = "fort_bragg", def = "def8", extents = abalone::extent_list, infile = abalone::percentdays)
+
+stress_ci; stress_fb 
+```
+
+## Plot annual time series of refugia
+
+Now we can vizualise the % of each year that meet refugia conditions. Note this takes \~5 seconds for Jessie to run.
+
+```{r}
+ts_viz_percentdays(area = "monterey_bay", yr_range = 1990:2100, def = "def8",
+input_file = abalone::percentdays, cons_thresh = 95, lib_thresh = 50)
+```
+
+# 2. Refugia
+
+## Build rasters of binary refugia
+
+Now that we have rasters of stress, we can convert these into binary rasters of refugia using the `build_refugia` function. We have a new argument for `thresh`, representing the temporal threshold we use to define refugia. The two options we provide are either 50 or 95%, representing liberal and conservative thresholds for defining refugia for the year of interest. 
+
+```{r}
+ens_refugia <- build_refugia(percentdays = abalone::percentdays,
+                             esm = "ens", yrst = 1990, yrend = 2100, thresh = 50, 
+                             progress = FALSE, save_path = NULL)
+terra::plot(ens_refugia[[98]], main = "Refugia in 2088")
+```
+
+## Vizualise binary refugia
+
+And as before, we can vizulise our refugia rasters using `viz_refugia`:
+
+```{r, figures-side, fig.show="hold", out.width="49%"}
+viz_refugia(yr = 2098, model = "ens", area = "monterey_bay",
+            def = "def8", extents = abalone::extent_list, 
+            infile = abalone::percentdays, thresh = 50)
+viz_refugia(yr = 2098, model = "ens", area = "san_francisco",
+            def = "def8", extents = abalone::extent_list, 
+            infile = abalone::percentdays, thresh = 50)
+
+```
+
+## Plot annual time series of refugia (temporal threshold) 
+
+Here, we can see the proportion of each year refugia conditions were met, averaged across all cells within the area of interest. This is dependent on the temporal threshold used. Takes a few seconds to run. 
+
+```{r}
+ts_viz_refugia(area = "monterey_bay", yr_range = 1990:2100, def = "def8",
+               input_file = abalone::percentdays, persist_thresh = 50, 
+               extent_list = abalone::extent_list)
+```
+
+
+# 3. Persistence
+
+## Build rasters of persistence of refugia 
+
+Now that we have our binary refugia maps, we want to calculate the persistence of refugia over a predefined time period. Here, we can create a raster of persistence for 2070-2099, which tells us the % of time during this time period that each cell was classed as refugia, dependent on the temporal threshold used. 
+
+```{r}
+persist_refugia <- build_persist(model = "ens", yr_range = 2070:2099,
+                                 persist_thresh = 50, save_path = NULL)
+terra::plot(persist_refugia)
+```
+
+## Vizualise persistence
+
+As before, we can use `tmap` to create a nicer plot. 
+
+```{r}
+viz_persist(yr = 2070:2099, model = "ens", area = "monterey_bay",
+def = "def8", extents = abalone::extent_list, breaks = seq(0, 100, 20),
+persist_thresh = 50)
+```
+
+# 4. Delta
+
+## Build rasters of delta refugia
+
+We're interested in how refugia has changed over time. The function `build_delta` creates a raster in delta refugia (i.e., the change in refugia) between two time periods. Positive values = gain in refugia; negative values = loss of refugia. 
+
+```{r}
+deltar <- build_delta(thresh = 50, model = "ens", histrange = 2020:2049, 
+                      projrange = 2070:2099, save_path = NULL)
+terra::plot(deltar)
+
+```
+
+## Vizualise delta
+
+Let's use `tmap`. 
+
+```{r}
+viz_delta(model = "ens", area = "monterey_bay",
+          def = "def8", histrange = 2020:2049, projrange = 2070:2099,
+          extents = abalone::extent_list, persist_thresh = 50, save_path = NULL)
+
+```
