@@ -17,8 +17,6 @@ jobs:
           PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_API }}
           PUSHOVER_USER: ${{ secrets.PUSHOVER_USER_KEY }}
         with:
-          title: 'GitHub Pages Deployment'
+          title: 'GitHub Pages'
           status: ${{ github.event.workflow_run.conclusion }}
-          message: |
-            The 'pkgdown.yaml' workflow just finished with status: ${{ github.event.workflow_run.conclusion }}
 
