@@ -1,0 +1,9 @@
+---
+title: "Hex Logo"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+![](images/logo.png)
