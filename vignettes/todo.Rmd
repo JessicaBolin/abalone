@@ -9,8 +9,7 @@ vignette: >
 
 Here I list in progress work for the next version update:
 
--   Change examples in functions to only a few years
-
 -   Choose internal R files to host in `/extdata`. Remove non-needed ones
 
--   Standarize function arguments (e.g., thresh)
+
+
