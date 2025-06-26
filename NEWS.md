@@ -4,6 +4,10 @@ editor_options:
     wrap: 72
 ---
 
+# abalone 0.1.1
+- Add authors/contributors
+- New hex logo 
+
 # abalone 0.1.0
 
 > 2025-06-17

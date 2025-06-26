@@ -4,11 +4,10 @@ Version: 0.1.0
 Authors@R: c(
     person("Jessica A.", "Bolin", email = "jabbolin@ucdavis.edu", role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-9868-7511")),
-    person("Mikaela", "Provost", role = "ctb"),
-    person("Nerea", "Lezama-Ochoa", role = "ctb"),
-    person("Barb", "Muhling", role = "ctb"),
-    person("Mer", "Pozo Buil", role = "ctb"),
-    person("Steven", "Bograd", role = "ctb"))
+    person("Mikaela", "Provost", role = "aut"),
+    person("Nerea", "Lezama-Ochoa", role = "aut"),
+    person("Barb", "Muhling", role = "aut"),
+    person("Mer", "Pozo Buil", role = "ctb"))
 Description: This package provides functions used for defining and vizualising climate refugia for red abalone across California.  
 License: MIT + file LICENSE
 Encoding: UTF-8
