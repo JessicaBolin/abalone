@@ -11,7 +11,7 @@
 
 ## Overview
 
-`{abalone}` is a package which documents functions used throughout my postdoc for defining and mapping climate refugia for red abalone across California. This project is funded through California's 5th Assessment on Climate Change, and supported by the University of California, Davis.
+`{abalone}` is a package which documents functions used for defining and mapping climate refugia for red abalone across California. This project is funded through California's 5th Assessment on Climate Change, and supported by the University of California, Davis.
 
 ## Installation
 
