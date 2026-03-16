@@ -5,8 +5,13 @@ editor_options:
 ---
 
 # abalone 0.1.1
-- Add authors/contributors
-- New hex logo 
+
+> 2026-03-16
+
+-   Add authors/contributors
+-   New hex logo
+-   Prepared for paper submission
+-   Updated `inst/CITATION`
 
 # abalone 0.1.0
 
