@@ -4,6 +4,6 @@ bibentry(
   title    = "abalone: Climate refugia for red abalone",
   author   = c("Jessica Bolin", "Nerea Lezama-Ochoa", "Barb Muhling", "Mikaela Provost"),
   note = "R package version 0.1.1",
-  year   = "2025",
+  year   = "2026",
   doi  = "10.5281/zenodo.15653690"
 )
