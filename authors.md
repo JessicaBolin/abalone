@@ -20,7 +20,7 @@
 Source:
 [`inst/CITATION`](https://github.com/JessicaBolin/abalone/blob/main/inst/CITATION)
 
-Bolin J, Lezama-Ochoa N, Muhling B, Provost M (2025). “abalone: Climate
+Bolin J, Lezama-Ochoa N, Muhling B, Provost M (2026). “abalone: Climate
 refugia for red abalone.”
 [doi:10.5281/zenodo.15653690](https://doi.org/10.5281/zenodo.15653690),
 R package version 0.1.1.
@@ -29,6 +29,6 @@ R package version 0.1.1.
       title = {abalone: Climate refugia for red abalone},
       author = {Jessica Bolin and Nerea Lezama-Ochoa and Barb Muhling and Mikaela Provost},
       note = {R package version 0.1.1},
-      year = {2025},
+      year = {2026},
       doi = {10.5281/zenodo.15653690},
     }
