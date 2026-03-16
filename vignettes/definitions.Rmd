@@ -12,7 +12,7 @@ vignette: >
 Below lists the definitions we are using to define refugia for red abalone.
 
 | \#  | Description                                                                                                                                                                         | Variable            | Refs                                                                                     |
-|----------------|--------------------------|----------------|----------------|
+|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|------------------------------------------------------------------------------------------|
 | 1   | When abalone experience lower short-term variability in temperature over 5-10 day moving window periods at a specific site                                                          | Temperature         | Dowd & Denny 2020                                                                        |
 | 2   | When abalone experience lower degree heating days above a temperature threshold at a specific site                                                                                  | Temperature         | Boch et al 2018; Gleeson & Strong 1995                                                   |
 | 3   | Thermal performance curve                                                                                                                                                           | Temperature         | Provost et al. in prep                                                                   |
