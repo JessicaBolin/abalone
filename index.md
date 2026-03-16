@@ -27,7 +27,7 @@ article to see examples of how to deploy these functions.
 
 Here is the full bibliographic reference:
 
-> Bolin, J., Lezama-Ochoa N., Muhling, B. & Provost, M. (2025). abalone:
+> Bolin, J., Lezama-Ochoa N., Muhling, B. & Provost, M. (2026). abalone:
 > Climate refugia for red abalone. R package version 0.1.1,
 > <https://doi.org/10.5281/zenodo.15653690>.
 

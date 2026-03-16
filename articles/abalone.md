@@ -4,9 +4,6 @@
 library(abalone)
 ```
 
-Here I will document examples of how to run refugia functions. More to
-come.
-
 ## Data required
 
 ### Refugia dataframe
